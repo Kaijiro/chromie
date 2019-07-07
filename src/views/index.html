@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Chromie version {{ version }}</title>
+    <style type="text/css">
+
+    </style>
+</head>
+<body>
+<h1>Chromie v0.1.0</h1>
+
+<button type="button" id="print">DEBUG</button>
+<div>
+    <p>Drag the log file here</p>
+</div>
+<div id="result">
+    <span>Nombre de rencontres : <span id="numberOfEncounter">0</span></span>
+    <div id="encounterButtons"></div>
+    <hr/>
+    <div id="fightersButtons"></div>
+    <hr/>
+    <div id="creaturesButtons"></div>
+    <hr/>
+    <div id="technicsButtons"></div>
+    <hr/>
+    <div>
+        <span>Timings : </span>
+        <ul id="timing">
+
+        </ul>
+    </div>
+</div>
+<script type="text/javascript" src="../../node_modules/moment/min/moment.min.js"></script>
+<script type="text/javascript">
+    const fs = require('fs');
+    const readline = require('readline');
+
+    const encounters = [];
+    let spellsToFollow = [];
+    let currentEncounter = null;
+    let fightNumber = 1;
+
+    function removeAllChildren(element) {
+        while (element.firstChild) {
+            element.removeChild(element.firstChild)
+        }
+    }
+
+    function updateTimings() {
+        let encounterID;
+        const timingElement = document.getElementById("timing");
+        removeAllChildren(timingElement);
+
+        let casts = [];
+        spellsToFollow
+            .forEach(spell => {
+                if(spell.encounter === null || spell.entity === null ||  spell.spellName === null){
+                    console.error("[updateTiming] But what the fuck ....");
+                    return;
+                }
+
+                let entity = encounters[spell.encounter].fighters.find(fighter => fighter.playerID === spell.entity);
+
+                if(entity === undefined){
+                    entity = encounters[spell.encounter].monsters.find(creature => creature.creatureID === spell.entity);
+                }
+
+                if(entity === undefined){
+                    console.error("[updateTiming] Could not find entity");
+                    return;
+                }
+
+                if(!encounterID){
+                    encounterID = spell.encounter;
+                }
+
+                for(const spellCast in entity.casts){
+                    const cast = entity.casts[spellCast];
+
+                    if(cast.spellName === spell.spellName){
+                        cast.caster = entity.name;
+                        casts.push(cast);
+                    }
+                }
+            });
+
+        casts = casts.sort((spell1, spell2) => {
+            if(spell1.eventTime.isBefore(spell2.eventTime)){
+                return -1;
+            } else {
+                return 1;
+            }
+        });
+
+        casts.forEach(cast => {
+            let li = document.createElement("li");
+            let encounter = encounters[encounterID];
+            li.innerText = "[" + moment.unix(cast.eventTime.unix() - encounter.startTime.unix()).format("mm:ss") + "] " + cast.caster + " : " + cast.spellName;
+            timingElement.appendChild(li);
+        });
+    }
+
+    function onSpellLabelClick(e) {
+        const spellName = e.target.getAttribute("data-spell-name");
+        const entityID = e.target.getAttribute("data-entity-id");
+        const encounterID = e.target.getAttribute("data-encounter-id");
+
+        if(e.target.checked === true){
+            spellsToFollow.push({
+                "encounter": encounterID,
+                "entity": entityID,
+                "spellName": spellName
+            });
+        }
+
+        updateTimings();
+    }
+
+    function onCharacterButtonClick(e) {
+        const entityID = e.target.getAttribute("data-entity-id");
+        const encounterID = parseInt(e.target.getAttribute("data-encounter-id"));
+        const technicsButton = document.getElementById("technicsButtons");
+        removeAllChildren(technicsButton);
+
+        const technicsTitle = document.createElement("span");
+        technicsTitle.innerText = "Techniques :";
+        technicsButton.appendChild(technicsTitle);
+
+        let entity = encounters[encounterID].fighters.find(fighter => fighter.playerID === entityID);
+
+        if(entity === undefined){
+            entity = encounters[encounterID].monsters.find(monster => monster.creatureID === entityID);
+        }
+
+        if(entity === undefined){
+            console.error("Pas d'entité correspondante à l'ID " + entityID);
+            return;
+        }
+
+        let spellList = [];
+        entity.casts.map(cast => {
+            if(!spellList.find(spell => spell === cast.spellName)){
+                spellList.push(cast.spellName);
+
+                const checkbox = document.createElement("input");
+                const label = document.createElement("label");
+                label.textContent = cast.spellName;
+
+                checkbox.type = "checkbox";
+                checkbox.setAttribute("data-spell-name", cast.spellName);
+                checkbox.setAttribute("data-entity-id", entityID);
+                checkbox.setAttribute("data-encounter-id", encounterID);
+                label.addEventListener("click", onSpellLabelClick);
+                label.prepend(checkbox);
+                technicsButton.appendChild(label);
+            }
+        });
+    }
+
+    function onEncounterButtonClick(e) {
+        const encounterID = parseInt(e.target.getAttribute("data-fight-id"));
+        const fightersPlace = document.getElementById("fightersButtons");
+        const creaturesPlace = document.getElementById("creaturesButtons");
+        removeAllChildren(fightersPlace);
+        removeAllChildren(creaturesPlace);
+
+        const fightersTitle = document.createElement("span");
+        fightersTitle.innerText = "Personnages : ";
+        fightersPlace.appendChild(fightersTitle);
+
+        const monstersTitle = document.createElement("span");
+        monstersTitle.innerText = "Monstres : ";
+        creaturesPlace.appendChild(monstersTitle);
+
+        for(let i = 0; i < encounters[encounterID - 1].fighters.length; i++){
+            const button = document.createElement("button");
+            const encounter = encounters[encounterID - 1];
+            const fighter = encounter.fighters[i];
+            button.textContent = fighter.name;
+            button.setAttribute("data-entity-id", fighter.playerID);
+            button.setAttribute("data-encounter-id", encounterID - 1);
+            button.addEventListener("click", onCharacterButtonClick);
+
+            fightersPlace.appendChild(button);
+        }
+
+        for(let i = 0; i < encounters[encounterID - 1].monsters.length; i++){
+            const button = document.createElement("button");
+            const encounter = encounters[encounterID - 1];
+            const monster = encounter.monsters[i];
+            button.textContent = monster.name;
+            button.setAttribute("data-entity-id", monster.creatureID);
+            button.setAttribute("data-encounter-id", encounterID - 1);
+            button.addEventListener("click", onCharacterButtonClick);
+
+            document.getElementById("creaturesButtons").appendChild(button);
+        }
+    }
+
+    function sanitizePlayerName(playerName) {
+        const matches = /"([^-]*)-.*"/.exec(playerName);
+
+        if(matches === null){
+            //console.error("[sanitizePlayerName] La Regex n'a pas trouvé de résultat satisfaisant pour l'input \"" + playerName + "\"");
+            return "";
+        }
+
+        return matches[1];
+    }
+
+    function sanitizeEntityName(entityName) {
+        const matches = /"(.*)"/.exec(entityName)
+
+        if(matches === null){
+            //console.error("[sanitizeEntityName] La Regex n'a pas trouvé de résultat satisfaisant pour l'input \"" + entityName + "\"");
+            return "";
+        }
+
+        return matches[1];
+    }
+
+    function doThingsWithTheLine(line) {
+        if(line.includes("ENCOUNTER_START")){
+            const lineElements = line.split(" ");
+            document.getElementById("numberOfEncounter").innerHTML = fightNumber;
+
+            const button = document.createElement("button");
+            button.textContent = fightNumber;
+            button.setAttribute("data-fight-id", fightNumber);
+            button.addEventListener("click", onEncounterButtonClick);
+
+            document.getElementById("encounterButtons").appendChild(button);
+            currentEncounter = {
+                "encounterID": fightNumber++,
+                "startTime": moment(lineElements[1], moment.HTML5_FMT.TIME_MS),
+                "bossSpellsCasts": [],
+                "fighters": [],
+                "monsters": []
+            };
+        } else if(line.includes("ENCOUNTER_END")){
+            encounters.push(Object.assign({}, currentEncounter));
+            currentEncounter = null;
+        } else if(line.includes("COMBATANT_INFO")){
+            const playerData = line.split(" ")[3].split(",");
+            currentEncounter.fighters.push({
+                "playerID": playerData[1],
+                "name": "",
+                "casts": []
+            })
+        } else if(line.includes("SWING_DAMAGE_LANDED") || line.includes("SPELL_CAST_START")) {
+            const lineParts = line.split("  ");
+            const lineData = lineParts[1].split(",");
+
+            if(currentEncounter !== null){
+                const damageDealerID = lineData[1];
+                let eventTime = moment(lineParts[0].split(" ")[1], moment.HTML5_FMT.TIME_MS);
+
+                if(damageDealerID.includes("Player-")){
+                    currentEncounter.fighters
+                        .filter(fighter => fighter.playerID === damageDealerID)
+                        .map(fighter => {
+                            fighter.casts.push({
+                                "eventTime": eventTime,
+                                "spellName": lineData[10] === "0000000000000000" ? "Mélée" : sanitizeEntityName(lineData[10])
+                            });
+                        });
+                } else if(damageDealerID.includes("Creature-")){
+                    let monster = currentEncounter.monsters
+                        .find(monster => monster.creatureID === damageDealerID);
+
+                    if(monster === undefined){
+                        monster = {
+                            "creatureID": damageDealerID,
+                            "name": sanitizeEntityName(lineData[2]),
+                            "casts": []
+                        };
+
+                        currentEncounter.monsters.push(monster);
+                    }
+
+                    monster.casts.push({
+                        "eventTime": eventTime,
+                        "spellName": lineData[10] === "0000000000000000" ? "Mélée" : sanitizeEntityName(lineData[10])
+                    });
+                }
+            }
+        } else {
+            const lineData = line.split("  ")[1].split(",");
+            if(lineData[1].includes("Player-")){
+                const playerID = lineData[1];
+
+                if(currentEncounter !== null) {
+                    currentEncounter.fighters
+                        .filter(fighter => fighter.playerID === playerID)
+                        .map(fighter => {
+                            if (fighter.name === "") {
+                                fighter.name = sanitizePlayerName(lineData[2]);
+                            }
+                        });
+                }
+            } else if(lineData[1].includes("Creature-")){
+                const creatureID = lineData[1];
+
+                if(currentEncounter !== null){
+                    let creaturesFound = currentEncounter.monsters
+                        .filter(creature => creature.creatureID === creatureID);
+
+                    if(creaturesFound.length === 0){
+                        creaturesFound = {
+                            "creatureID": creatureID,
+                            "name": sanitizeEntityName(lineData[2]),
+                            "casts": []
+                        };
+
+                        currentEncounter.monsters.push(creaturesFound);
+                    }
+                }
+            }
+        }
+    }
+
+    function readLogFile(file) {
+        const reader = readline.createInterface({
+            input: fs.createReadStream(file.path),
+            console: false
+        });
+
+        reader.on('line', line => {
+            doThingsWithTheLine(line);
+        });
+    }
+
+    document.addEventListener("drop", e => {
+        e.preventDefault();
+        e.stopPropagation();
+
+        for(const file of e.dataTransfer.files){
+            if(file.name === "WoWCombatLog.txt"){
+                readLogFile(file);
+            }
+        }
+    });
+
+    document.addEventListener("dragover", e => {
+        e.preventDefault();
+        e.stopPropagation();
+    });
+
+    document.getElementById("print").addEventListener("click", () => {
+        console.log(encounters);
+    });
+</script>
+</body>
+</html>

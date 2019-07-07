@@ -1,0 +1,20 @@
+{
+  "name": "chromie",
+  "version": "0.1.0",
+  "description": "A WoW log parser to get timings",
+  "main": "index.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "repository": "https://github.com/kaijiro/chromie",
+  "keywords": [],
+  "author": "Kaijiro",
+  "license": "",
+  "devDependencies": {
+    "electron": "5.0.6"
+  },
+  "dependencies": {
+    "moment": "2.24.0",
+    "node": "12.6.0"
+  }
+}

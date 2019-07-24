@@ -4,17 +4,40 @@
   "description": "A WoW log parser to get timings",
   "main": "index.js",
   "scripts": {
-    "start": "electron ."
+    "start": "electron .",
+    "pack": "electron-builder --dir",
+    "dist": "electron-builder",
+    "postinstall": "electron-builder install-app-deps"
   },
   "repository": "https://github.com/kaijiro/chromie",
   "keywords": [],
   "author": "Kaijiro",
   "license": "",
   "devDependencies": {
-    "electron": "5.0.6"
+    "electron": "5.0.6",
+    "electron-builder": "^21.0.15"
   },
   "dependencies": {
     "moment": "2.24.0",
     "node": "12.6.0"
+  },
+  "build": {
+    "appId": "kaijiro.chromie",
+    "win": {
+      "target": [
+        {
+          "target": "portable",
+          "arch": [
+            "x64"
+          ]
+        },
+        {
+          "target": "nsis",
+          "arch": [
+            "x64"
+          ]
+        }
+      ]
+    }
   }
 }

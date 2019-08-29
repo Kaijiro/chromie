@@ -14,7 +14,21 @@ Chromie is a tool made to inspect passed Raid fight and try to figure :
 yarn install
 ```
 
+### Run the project 
+```
+yarn electron:serve
+```
+
+### Run the tests
+```
+yarn test:unit
+```
+(Add `:watch` to enter watch mode)
+
 ### Lints and fixes files
 ```
-yarn run lint
+yarn lint
 ```
+
+## Resources
+[WoW Log Documentation](https://wow.gamepedia.com/COMBAT_LOG_EVENT)

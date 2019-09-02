@@ -10,8 +10,8 @@
     "electron:serve": "vue-cli-service electron:serve",
     "postinstall": "electron-builder install-app-deps",
     "postuninstall": "electron-builder install-app-deps",
-    "test:unit": "vue-cli-service test:unit",
-    "test:unit:watch": "vue-cli-service test:unit --watch"
+    "test": "vue-cli-service test:unit",
+    "test:watch": "vue-cli-service test:unit --watch"
   },
   "main": "background.js",
   "dependencies": {

@@ -1,7 +1,6 @@
 [![Build Status](https://travis-ci.org/Kaijiro/chromie.svg?branch=master)](https://travis-ci.org/Kaijiro/chromie)
 [![Known Vulnerabilities](https://snyk.io//test/github/Kaijiro/chromie/badge.svg?targetFile=package.json)](https://snyk.io//test/github/Kaijiro/chromie?targetFile=package.json)
 
-
 # Chromie
 
 Chromie is a tool made to inspect passed Raid fight and try to figure :
@@ -9,9 +8,9 @@ Chromie is a tool made to inspect passed Raid fight and try to figure :
 - Planify your Raid CDs
 - Get some stats on your pulls
 
+This tools does not intend to replace WarcraftLogs at all, they are 2 different tools.
 ## Objectives on short/mid term
-- Clean the code (because it was a 8 hours POC and I was learning how Electron works at the same time)
-- Setup a CI/CD env on Travis with tests
+- Make Chromie as """efficient""" as before the code project big refactor
 
 ## Project setup
 ```
@@ -25,7 +24,7 @@ yarn electron:serve
 
 ### Run the tests
 ```
-yarn test:unit
+yarn test
 ```
 (Add `:watch` to enter watch mode)
 

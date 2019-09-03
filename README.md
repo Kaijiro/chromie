@@ -1,3 +1,7 @@
+[![Build Status](https://travis-ci.org/Kaijiro/chromie.svg?branch=master)](https://travis-ci.org/Kaijiro/chromie)
+[![Known Vulnerabilities](https://snyk.io//test/github/Kaijiro/chromie/badge.svg?targetFile=package.json)](https://snyk.io//test/github/Kaijiro/chromie?targetFile=package.json)
+
+
 # Chromie
 
 Chromie is a tool made to inspect passed Raid fight and try to figure :

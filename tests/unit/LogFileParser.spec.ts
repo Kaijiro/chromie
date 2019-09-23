@@ -16,12 +16,15 @@ describe('LogFileParser', () => {
                 });
             });
 
-            describe("It should find a single encounter in a file with one encounter", () => {
+            describe("It should find a single encounter in a file with one named encounter", () => {
                 const parser: LogFileParser = new LogFileParser();
                 const parserPromise = parser.parseEncounters("tests/resources/WoWCombatLog_singleEncounter.txt");
 
                 parserPromise.then(encounters => {
                     expect(encounters).to.have.lengthOf(1);
+
+                    const encounter = encounters[0];
+                    expect(encounter.getName()).to.equal(`Uu’nat, héraut du Vide`);
                 });
             });
 

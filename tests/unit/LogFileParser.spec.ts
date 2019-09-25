@@ -28,10 +28,16 @@ describe('LogFileParser', () => {
                 });
             });
 
-            // Fichier avec 0 rencontre X
-            // Fichier avec 1 rencontre X
-            // Fichier avec 2 rencontres
-            // Fichier avec X rencontres
+            describe("It should find 7 encounters in a file with 7 encounters with the same boss", () => {
+                const parser: LogFileParser = new LogFileParser();
+                const parserPromise = parser.parseEncounters("tests/resources/WoWCombatLog.txt");
+
+                parserPromise.then(encounters => {
+                    expect(encounters).to.have.lengthOf(7);
+
+                    encounters.forEach(encounter => expect(encounter.getName()).to.equal(`Uu’nat, héraut du Vide`));
+                });
+            });
         });
     });
 });

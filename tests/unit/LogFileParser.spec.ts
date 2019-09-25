@@ -5,9 +5,7 @@ describe('LogFileParser', () => {
 
     describe('Parse Encounters in the file', () => {
         describe("::parseEncountersFrom(file)", () => {
-            // TODO Réfléchir aux cas d'erreurs ? Pas de fichier, fichier mais pas un fichier de log, fichier corrompu, etc ...
-
-            describe("It should find 0 encounter in a empty file", () => {
+            it("should find 0 encounter in a empty file", () => {
                 const parser: LogFileParser = new LogFileParser();
                 const parserPromise = parser.parseEncounters("tests/resources/WoWCombatLog_empty.txt");
 
@@ -16,7 +14,7 @@ describe('LogFileParser', () => {
                 });
             });
 
-            describe("It should find a single encounter in a file with one named encounter", () => {
+            it("should find a single encounter in a file with one named encounter", () => {
                 const parser: LogFileParser = new LogFileParser();
                 const parserPromise = parser.parseEncounters("tests/resources/WoWCombatLog_singleEncounter.txt");
 
@@ -28,7 +26,7 @@ describe('LogFileParser', () => {
                 });
             });
 
-            describe("It should find 7 encounters in a file with 7 encounters with the same boss", () => {
+            it("should find 7 encounters in a file with 7 encounters with the same boss", () => {
                 const parser: LogFileParser = new LogFileParser();
                 const parserPromise = parser.parseEncounters("tests/resources/WoWCombatLog.txt");
 

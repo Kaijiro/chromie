@@ -11,7 +11,7 @@ describe('LogFileParser', () => {
 
                 parserPromise.then(encounters => {
                     expect(encounters['encounters']).to.have.lengthOf(0);
-                }).catch(err => console.error(err));
+                });
             });
 
             it("should find a single encounter in a file with one named encounter", () => {
@@ -34,7 +34,7 @@ describe('LogFileParser', () => {
                     expect(encounters['encounters']).to.have.lengthOf(7);
 
                     encounters['encounters'].forEach(encounter => expect(encounter.getName()).to.equal(`Uu’nat, héraut du Vide`));
-                }).catch(err => console.error(err));
+                });
             });
         });
     });

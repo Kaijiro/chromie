@@ -5,6 +5,7 @@ import {EncounterStartParser} from "@/domain/parser/matchers/implementations/Enc
 import {EncounterEvent} from "@/domain/parser/events/EncounterEvent";
 import Encounter from "@/domain/encounters/Encounter";
 import {EncounterStartEvent} from "@/domain/parser/events/EncounterStartEvent";
+import {Encounters} from "@/domain/encounters/Encounters";
 
 export default class LogFileParser {
 
@@ -14,9 +15,9 @@ export default class LogFileParser {
         this.parsers.push(new EncounterStartParser());
     }
 
-    parseEncounters(logFilePath: string): Promise<Encounter[]> {
-        return new Promise<Encounter[]>((resolve, reject) => {
-            const encounters: Encounter[] = [];
+    parseEncounters(logFilePath: string): Promise<Encounters> {
+        return new Promise<Encounters>((resolve, reject) => {
+            const encounters: Encounters = new Encounters();
             const fileReader = readline.createInterface({
                 input: fs.createReadStream(logFilePath)
             });
@@ -32,7 +33,7 @@ export default class LogFileParser {
                     const result = eventInfosRegex.exec(line);
 
                     if(result !== null){
-                        encounters.push(Encounter.with(result[2]));
+                        encounters.add(Encounter.with(result[2]));
                     }
                 }
             });

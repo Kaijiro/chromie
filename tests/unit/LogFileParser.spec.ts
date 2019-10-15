@@ -10,8 +10,8 @@ describe('LogFileParser', () => {
                 const parserPromise = parser.parseEncounters("tests/resources/WoWCombatLog_empty.txt");
 
                 parserPromise.then(encounters => {
-                    expect(encounters).to.have.lengthOf(0);
-                });
+                    expect(encounters['encounters']).to.have.lengthOf(0);
+                }).catch(err => console.error(err));
             });
 
             it("should find a single encounter in a file with one named encounter", () => {
@@ -19,9 +19,9 @@ describe('LogFileParser', () => {
                 const parserPromise = parser.parseEncounters("tests/resources/WoWCombatLog_singleEncounter.txt");
 
                 parserPromise.then(encounters => {
-                    expect(encounters).to.have.lengthOf(1);
+                    expect(encounters['encounters']).to.have.lengthOf(1);
 
-                    const encounter = encounters[0];
+                    const encounter = encounters['encounters'][0];
                     expect(encounter.getName()).to.equal(`Uu’nat, héraut du Vide`);
                 });
             });
@@ -31,10 +31,10 @@ describe('LogFileParser', () => {
                 const parserPromise = parser.parseEncounters("tests/resources/WoWCombatLog.txt");
 
                 parserPromise.then(encounters => {
-                    expect(encounters).to.have.lengthOf(7);
+                    expect(encounters['encounters']).to.have.lengthOf(7);
 
-                    encounters.forEach(encounter => expect(encounter.getName()).to.equal(`Uu’nat, héraut du Vide`));
-                });
+                    encounters['encounters'].forEach(encounter => expect(encounter.getName()).to.equal(`Uu’nat, héraut du Vide`));
+                }).catch(err => console.error(err));
             });
         });
     });

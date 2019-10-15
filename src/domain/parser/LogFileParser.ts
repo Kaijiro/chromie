@@ -1,9 +1,9 @@
-import Encounter from "@/domain/Encounter";
 import * as readline from "readline";
 import * as fs from "fs";
 import {LineParser} from "@/domain/parser/matchers/LineParser";
 import {EncounterStartParser} from "@/domain/parser/matchers/implementations/EncounterStartParser";
 import {EncounterEvent} from "@/domain/parser/events/EncounterEvent";
+import Encounter from "@/domain/encounters/Encounter";
 import {EncounterStartEvent} from "@/domain/parser/events/EncounterStartEvent";
 
 export default class LogFileParser {
@@ -22,7 +22,6 @@ export default class LogFileParser {
             });
 
             fileReader.on("line", line => {
-
                 const parsedEvent : EncounterEvent | undefined = this.parsers
                     .map((parser: LineParser) => parser.parse(line))
                     .find((event: EncounterEvent | undefined) => event !== null)

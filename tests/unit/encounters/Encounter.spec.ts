@@ -1,5 +1,5 @@
 import {expect} from "chai";
-import Encounter from "@/domain/Encounter";
+import Encounter from "@/domain/encounters/Encounter";
 
 describe('Encounter', () => {
 

@@ -3,8 +3,6 @@ import * as fs from "fs";
 import {LineParser} from "@/domain/parser/matchers/LineParser";
 import {EncounterStartParser} from "@/domain/parser/matchers/implementations/EncounterStartParser";
 import {EncounterEvent} from "@/domain/parser/events/EncounterEvent";
-import Encounter from "@/domain/encounters/Encounter";
-import {EncounterStartEvent} from "@/domain/parser/events/EncounterStartEvent";
 import {Encounters} from "@/domain/encounters/Encounters";
 
 export default class LogFileParser {
@@ -23,19 +21,16 @@ export default class LogFileParser {
             });
 
             fileReader.on("line", line => {
-                const parsedEvent : EncounterEvent | undefined = this.parsers
+                const parsedEvent: EncounterEvent | undefined = this.parsers
                     .map((parser: LineParser) => parser.parse(line))
                     .find((event: EncounterEvent | undefined) => event !== null)
                 ;
 
-                if(parsedEvent instanceof EncounterStartEvent){
-                    const eventInfosRegex = new RegExp(`ENCOUNTER_START,(\\d+),"([A-Z,àâäéèêëîïôöùûü’ ]+)",(\\d+),(\\d+),(\\d+)`, 'i');
-                    const result = eventInfosRegex.exec(line);
-
-                    if(result !== null){
-                        encounters.add(Encounter.with(result[2]));
-                    }
+                if (parsedEvent === undefined) {
+                    return;
                 }
+
+                parsedEvent.applyOn(encounters);
             });
 
             fileReader.on("close", () => {

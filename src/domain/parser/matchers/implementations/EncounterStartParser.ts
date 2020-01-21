@@ -8,7 +8,8 @@ export class EncounterStartParser implements LineParser {
         const result = eventInfosRegex.exec(line);
 
         if(result !== null){
-            return new EncounterStartEvent();
+            const encounterName = result[2];
+            return new EncounterStartEvent(encounterName);
         }
     }
 }

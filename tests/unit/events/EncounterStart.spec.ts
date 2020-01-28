@@ -1,5 +1,5 @@
 import {Encounters} from "@/domain/encounters/Encounters";
-import {EncounterStartEvent} from "@/domain/parser/events/EncounterStartEvent";
+import {EncounterStartEvent} from "@/domain/parser/events/implementations/EncounterStartEvent";
 import {expect} from 'chai';
 import {EncounterStartParser} from "@/domain/parser/matchers/implementations/EncounterStartParser";
 import {EncounterEvent} from "@/domain/parser/events/EncounterEvent";

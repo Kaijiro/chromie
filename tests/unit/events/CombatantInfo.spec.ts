@@ -1,9 +1,9 @@
-import {Encounters} from "@/domain/encounters/Encounters";
-import {CombatantInfoEvent} from "@/domain/parser/events/implementations/CombatantInfoEvent";
 import {expect} from 'chai';
-import Encounter from "@/domain/encounters/Encounter";
-import {CombatantInfoParser} from "@/domain/parser/matchers/implementations/CombatantInfoParser";
-import {EncounterEvent} from "@/domain/parser/events/EncounterEvent";
+import {Encounters} from "../../../src/domain/encounters/Encounters";
+import {CombatantInfoEvent} from "../../../src/domain/parser/events/implementations/CombatantInfoEvent";
+import Encounter from "../../../src/domain/encounters/Encounter";
+import {CombatantInfoParser} from "../../../src/domain/parser/matchers/implementations/CombatantInfoParser";
+import {EncounterEvent} from "../../../src/domain/parser/events/EncounterEvent";
 
 describe("CombatantInfoParser and CombatantInfoEvent", () => {
 

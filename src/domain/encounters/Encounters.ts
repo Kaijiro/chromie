@@ -1,4 +1,4 @@
-import Encounter from "@/domain/encounters/Encounter";
+import Encounter from "./Encounter";
 
 export class Encounters {
 

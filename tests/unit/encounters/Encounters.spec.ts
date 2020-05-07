@@ -1,6 +1,6 @@
-import {Encounters} from "@/domain/encounters/Encounters";
-import Encounter from "@/domain/encounters/Encounter";
 import {expect} from "chai";
+import {Encounters} from "../../../src/domain/encounters/Encounters";
+import Encounter from "../../../src/domain/encounters/Encounter";
 
 describe("Encounters", () => {
     it("should add an encounter to the encounter list", () => {

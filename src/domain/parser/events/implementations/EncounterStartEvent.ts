@@ -1,6 +1,6 @@
-import {EncounterEvent} from "@/domain/parser/events/EncounterEvent";
-import {Encounters} from "@/domain/encounters/Encounters";
-import Encounter from "@/domain/encounters/Encounter";
+import {EncounterEvent} from "../EncounterEvent";
+import {Encounters} from "../../../encounters/Encounters";
+import Encounter from "../../../encounters/Encounter";
 
 export class EncounterStartEvent implements EncounterEvent {
     constructor(private encounterName: string) {

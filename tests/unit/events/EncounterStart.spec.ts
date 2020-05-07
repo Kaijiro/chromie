@@ -1,8 +1,8 @@
-import {Encounters} from "@/domain/encounters/Encounters";
-import {EncounterStartEvent} from "@/domain/parser/events/implementations/EncounterStartEvent";
 import {expect} from 'chai';
-import {EncounterStartParser} from "@/domain/parser/matchers/implementations/EncounterStartParser";
-import {EncounterEvent} from "@/domain/parser/events/EncounterEvent";
+import {Encounters} from "../../../src/domain/encounters/Encounters";
+import {EncounterStartEvent} from "../../../src/domain/parser/events/implementations/EncounterStartEvent";
+import {EncounterStartParser} from "../../../src/domain/parser/matchers/implementations/EncounterStartParser";
+import {EncounterEvent} from "../../../src/domain/parser/events/EncounterEvent";
 
 describe("EncounterStartParser and EncounterStartEvent", () => {
 

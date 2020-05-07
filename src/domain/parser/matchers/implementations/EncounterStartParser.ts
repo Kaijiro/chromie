@@ -1,6 +1,6 @@
-import {LineParser} from "@/domain/parser/matchers/LineParser";
-import {EncounterStartEvent} from "@/domain/parser/events/implementations/EncounterStartEvent";
-import {EncounterEvent} from "@/domain/parser/events/EncounterEvent";
+import {LineParser} from "../LineParser";
+import {EncounterEvent} from "../../events/EncounterEvent";
+import {EncounterStartEvent} from "../../events/implementations/EncounterStartEvent";
 
 export class EncounterStartParser implements LineParser {
     parse(line: string): EncounterEvent | undefined {

@@ -1,4 +1,4 @@
-import {Encounters} from "@/domain/encounters/Encounters";
+import {Encounters} from "../../encounters/Encounters";
 
 export interface EncounterEvent {
     applyOn(encounters: Encounters): void

@@ -1,5 +1,5 @@
-import {EncounterEvent} from "@/domain/parser/events/EncounterEvent";
-import {Encounters} from "@/domain/encounters/Encounters";
+import {EncounterEvent} from "../EncounterEvent";
+import {Encounters} from "../../../encounters/Encounters";
 
 export class CombatantInfoEvent implements EncounterEvent {
     constructor(private playerName: string) {

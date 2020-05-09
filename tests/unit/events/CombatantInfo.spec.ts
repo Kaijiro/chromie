@@ -1,4 +1,3 @@
-import {expect} from 'chai';
 import {Encounters} from "../../../src/domain/encounters/Encounters";
 import {CombatantInfoEvent} from "../../../src/domain/parser/events/implementations/CombatantInfoEvent";
 import Encounter from "../../../src/domain/encounters/Encounter";
@@ -16,7 +15,7 @@ describe("CombatantInfoParser and CombatantInfoEvent", () => {
         encounters.add(Encounter.with(""));
         event.applyOn(encounters);
 
-        expect(encounters['encounters'][0]['fighters'].length).to.be.equal(1);
+        expect(encounters['encounters'][0]['fighters'].length).toBe(1);
     });
 
     it(`should add a player to the current encounter`, () => {
@@ -25,7 +24,7 @@ describe("CombatantInfoParser and CombatantInfoEvent", () => {
         const parser: CombatantInfoParser = new CombatantInfoParser();
 
         const event: EncounterEvent | undefined = parser.parse(EVENT_LINE);
-        expect(event).not.undefined;
+        expect(event).not.toBeUndefined();
         if (event === undefined) {
             return;
         }
@@ -33,6 +32,6 @@ describe("CombatantInfoParser and CombatantInfoEvent", () => {
         const combatantInfoEvent = (event as CombatantInfoEvent);
         combatantInfoEvent.applyOn(encounters);
 
-        expect(encounters['encounters'][0]['fighters'][0]).to.be.equal('Player-1390-09EFFE21');
+        expect(encounters['encounters'][0]['fighters'][0]).toBe('Player-1390-09EFFE21');
     });
 });

@@ -1,4 +1,3 @@
-import {expect} from 'chai';
 import {Encounters} from "../../../src/domain/encounters/Encounters";
 import {EncounterStartEvent} from "../../../src/domain/parser/events/implementations/EncounterStartEvent";
 import {EncounterStartParser} from "../../../src/domain/parser/matchers/implementations/EncounterStartParser";
@@ -14,7 +13,7 @@ describe("EncounterStartParser and EncounterStartEvent", () => {
 
         event.applyOn(encounters);
 
-        expect(encounters['encounters'].length).to.be.equal(1);
+        expect(encounters['encounters'].length).toBe(1);
     });
 
     it(`should add an Encounter with the specified name to the encounter list`, () => {
@@ -22,7 +21,7 @@ describe("EncounterStartParser and EncounterStartEvent", () => {
         const parser: EncounterStartParser = new EncounterStartParser();
 
         const event: EncounterEvent | undefined = parser.parse(EVENT_LINE);
-        expect(event).not.undefined;
+        expect(event).not.toBeUndefined();
         if (event === undefined) {
             return;
         }
@@ -30,6 +29,6 @@ describe("EncounterStartParser and EncounterStartEvent", () => {
         const encounterStartEvent = (event as EncounterStartEvent);
         encounterStartEvent.applyOn(encounters);
 
-        expect(encounters['encounters'][0]['name']).to.be.equal("Uu’nat, héraut du Vide");
+        expect(encounters['encounters'][0]['name']).toBe("Uu’nat, héraut du Vide");
     });
 });

@@ -1,9 +1,9 @@
 import * as readline from "readline";
 import * as fs from "fs";
-import {LineParser} from "@/domain/parser/matchers/LineParser";
-import {EncounterStartParser} from "@/domain/parser/matchers/implementations/EncounterStartParser";
-import {EncounterEvent} from "@/domain/parser/events/EncounterEvent";
-import {Encounters} from "@/domain/encounters/Encounters";
+import {LineParser} from "./matchers/LineParser";
+import {EncounterStartParser} from "./matchers/implementations/EncounterStartParser";
+import {Encounters} from "../encounters/Encounters";
+import {EncounterEvent} from "./events/EncounterEvent";
 
 export default class LogFileParser {
 

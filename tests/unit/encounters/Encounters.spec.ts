@@ -1,4 +1,3 @@
-import {expect} from "chai";
 import {Encounters} from "../../../src/domain/encounters/Encounters";
 import Encounter from "../../../src/domain/encounters/Encounter";
 
@@ -8,7 +7,7 @@ describe("Encounters", () => {
 
         encounters.add(Encounter.with("Someone"));
 
-        expect(encounters['encounters']).to.have.lengthOf(1);
+        expect(encounters['encounters']).toHaveLength(1);
     });
 
     it("should retrieve the last added encounter", () => {
@@ -16,12 +15,12 @@ describe("Encounters", () => {
         encounters.add(Encounter.with("Someone1"));
 
         let lastEncounter = encounters.last();
-        expect(lastEncounter['name']).to.be.equal("Someone1");
+        expect(lastEncounter['name']).toBe("Someone1");
 
         encounters.add(Encounter.with("Someone2"));
         encounters.add(Encounter.with("Someone3"));
 
         lastEncounter = encounters.last();
-        expect(lastEncounter['name']).to.be.equal("Someone3");
+        expect(lastEncounter['name']).toBe("Someone3");
     });
 });

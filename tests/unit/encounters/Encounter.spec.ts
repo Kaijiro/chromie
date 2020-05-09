@@ -1,4 +1,3 @@
-import {expect} from "chai";
 import Encounter from "../../../src/domain/encounters/Encounter";
 
 describe('Encounter', () => {
@@ -12,7 +11,7 @@ describe('Encounter', () => {
                     encounter.addFighter(`Fighter ${i}`);
                 }
 
-                expect(encounter['fighters'].length).to.equal(number);
+                expect(encounter['fighters'].length).toBe(number);
             });
         });
     });
@@ -26,7 +25,7 @@ describe('Encounter', () => {
                     encounter.addFighter(`Fighter number ${i}`);
                 }
 
-                expect(encounter.countFighters()).to.equal(number);
+                expect(encounter.countFighters()).toBe(number);
             });
         });
     });
@@ -35,7 +34,7 @@ describe('Encounter', () => {
         it(`should return "Uu'nat" when the encounter is constructed with "Uu'nat"`, () => {
             let encounter: Encounter = Encounter.with(`Uu'nat`);
 
-            expect(encounter['name']).to.equal(`Uu'nat`);
+            expect(encounter['name']).toBe(`Uu'nat`);
         });
     });
 });

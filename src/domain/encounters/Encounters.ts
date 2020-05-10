@@ -2,7 +2,7 @@ import Encounter from "./Encounter";
 
 export class Encounters {
 
-    private encounters: Encounter[];
+    private readonly encounters: Encounter[];
 
     constructor() {
         this.encounters = [];

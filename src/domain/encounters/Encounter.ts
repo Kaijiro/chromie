@@ -14,8 +14,8 @@ export default class Encounter {
         return this.fighters.length;
     }
 
-    addFighter(myFighter: string) {
-        this.fighters.push(myFighter);
+    addFighter(fighter: string) {
+        this.fighters.push(fighter);
     }
 
     getName() {

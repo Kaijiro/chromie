@@ -3,18 +3,18 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "test": "test:unit && test:integration",
+    "test": "yarn test:unit && yarn test:integration",
     "test:unit": "jest",
     "test:unit:watch": "jest --watch",
     "test:integration": "./node_modules/.bin/cucumber-js tests/integration/features/*.feature --require-module ts-node/register --require tests/integration/step-definitions/*.ts --format node_modules/cucumber-pretty"
   },
   "dependencies": {},
   "devDependencies": {
-    "@types/jest": "^25.2.1",
     "@babel/core": "^7.9.6",
     "@babel/preset-env": "^7.9.6",
     "@babel/preset-typescript": "^7.9.0",
     "@types/cucumber": "^6.0.1",
+    "@types/jest": "^25.2.1",
     "babel-jest": "^26.0.1",
     "cucumber": "^6.0.5",
     "cucumber-pretty": "^6.0.0",

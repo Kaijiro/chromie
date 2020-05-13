@@ -11,18 +11,17 @@ export class ChromieSteps {
     private resultPromise: Promise<Encounters> = null;
 
     @given(/^The log file "(.*\.txt)"$/)
-    public givenALogFile(logFilePath: string){
+    public givenALogFile(logFilePath: string) {
         this.logFilePath = logFilePath;
     }
 
-    @when(/^Chromie process the file$/)
-    public chromieProcess(){
+    @when("Chromie process the file")
+    public chromieProcess() {
         this.resultPromise = this.logFileParser.parseEncounters(this.logFilePath);
     }
 
-    @then(/^The encounter should contain (\d*) fighters$/)
-    public thenEncounterContainsPlayerCount(expectedPlayerCount: string) {
-        const expectedPlayerCountNumber = parseInt(expectedPlayerCount);
-        this.resultPromise.then(encounters => expect(encounters.last().countFighters()).toEqual(expectedPlayerCountNumber));
+    @then("The encounter should contain {int} fighters")
+    public thenEncounterContainsPlayerCount(expectedPlayerCount: number) {
+        this.resultPromise.then(encounters => expect(encounters.last().countFighters()).toEqual(expectedPlayerCount));
     }
 }

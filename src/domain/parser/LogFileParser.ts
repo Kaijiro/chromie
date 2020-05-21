@@ -5,6 +5,7 @@ import {EncounterStartParser} from "./matchers/implementations/EncounterStartPar
 import {Encounters} from "../encounters/Encounters";
 import {EncounterEvent} from "./events/EncounterEvent";
 import {CombatantInfoParser} from "./matchers/implementations/CombatantInfoParser";
+import {UnknownEvent} from "./events/implementations/UnknownEvent";
 
 export default class LogFileParser {
 
@@ -29,7 +30,7 @@ export default class LogFileParser {
                 ;
 
                 if (parsedEvent === undefined) {
-                    return;
+                    new UnknownEvent(line).applyOn(encounters);
                 }
 
                 parsedEvent.applyOn(encounters);

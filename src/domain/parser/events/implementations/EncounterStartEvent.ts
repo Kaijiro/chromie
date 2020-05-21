@@ -8,6 +8,6 @@ export class EncounterStartEvent implements EncounterEvent {
     }
 
     applyOn(encounters: Encounters): void {
-        encounters.add(Encounter.with(this.encounterName));
+        encounters.add(new Encounter(this.encounterName));
     }
 }

@@ -24,4 +24,16 @@ export class ChromieSteps {
     public thenEncounterContainsPlayerCount(expectedPlayerCount: number) {
         this.resultPromise.then(encounters => expect(encounters.last().countFighters()).toEqual(expectedPlayerCount));
     }
+
+    @then(/^The player with ID (Player-\d{4}-[A-F0-9]{8}) should has used (\d*) spells and techniques$/)
+    public thenPlayerWithIDShouldHasUsedSpellCount(playerId: string, spellCount: string) {
+        const spellCountNumber = parseInt(spellCount);
+        console.log(playerId, spellCountNumber);
+        console.debug("Ouh yeah");
+    }
+
+    @then("The encounter should contain no unknown event")
+    public thenTheEncounterShouldNotContainAnyUnknownEvent() {
+        this.resultPromise.then(encounters => expect(encounters.last().countUnknownEvents()).toBe(0));
+    }
 }

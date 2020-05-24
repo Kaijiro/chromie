@@ -18,4 +18,8 @@ export default class Encounter {
     addUnknownEvent(eventLine: string) {
         this.unknownLines.push(eventLine);
     }
+
+    countUnknownEvents(): number {
+        return this.unknownLines.length;
+    }
 }

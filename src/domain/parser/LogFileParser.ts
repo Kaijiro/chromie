@@ -6,6 +6,7 @@ import {Encounters} from "../encounters/Encounters";
 import {EncounterEvent} from "./events/EncounterEvent";
 import {CombatantInfoParser} from "./matchers/implementations/CombatantInfoParser";
 import {UnknownEvent} from "./events/implementations/UnknownEvent";
+import CombatLogVersionParser from "./matchers/implementations/CombatLogVersionParser";
 
 export default class LogFileParser {
 
@@ -14,6 +15,7 @@ export default class LogFileParser {
     constructor() {
         this.parsers.push(new EncounterStartParser());
         this.parsers.push(new CombatantInfoParser());
+        this.parsers.push(new CombatLogVersionParser());
     }
 
     parseEncounters(logFilePath: string): Promise<Encounters> {
@@ -31,9 +33,9 @@ export default class LogFileParser {
 
                 if (parsedEvent === undefined) {
                     new UnknownEvent(line).applyOn(encounters);
+                } else {
+                    parsedEvent.applyOn(encounters);
                 }
-
-                parsedEvent.applyOn(encounters);
             });
 
             fileReader.on("close", () => {

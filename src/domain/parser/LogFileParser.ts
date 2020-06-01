@@ -8,6 +8,7 @@ import {CombatantInfoParser} from "./matchers/implementations/CombatantInfoParse
 import {UnknownEvent} from "./events/implementations/UnknownEvent";
 import CombatLogVersionParser from "./matchers/implementations/CombatLogVersionParser";
 import {SpellAuraRemovedParser} from "./matchers/implementations/SpellAuraRemovedParser";
+import {SpellDamageParser} from "./matchers/implementations/SpellDamageParser";
 
 export default class LogFileParser {
 
@@ -18,6 +19,7 @@ export default class LogFileParser {
         this.parsers.push(new CombatantInfoParser());
         this.parsers.push(new CombatLogVersionParser());
         this.parsers.push(new SpellAuraRemovedParser());
+        this.parsers.push(new SpellDamageParser());
     }
 
     parseEncounters(logFilePath: string): Promise<Encounters> {

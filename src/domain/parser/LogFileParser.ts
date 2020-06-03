@@ -18,6 +18,7 @@ import {SpellAbsorbedParser} from "./matchers/implementations/SpellAbsorbedParse
 import {SpellHealParser} from "./matchers/implementations/SpellHealParser";
 import {SpellCastStartParser} from "./matchers/implementations/SpellCastStartParser";
 import {SpellEnergizeParser} from "./matchers/implementations/SpellEnergizeParser";
+import {SpellPeriodicDamageParser} from "./matchers/implementations/SpellPeriodicDamageParser";
 
 export default class LogFileParser {
 
@@ -38,6 +39,7 @@ export default class LogFileParser {
         this.parsers.push(new SpellHealParser());
         this.parsers.push(new SpellCastStartParser());
         this.parsers.push(new SpellEnergizeParser());
+        this.parsers.push(new SpellPeriodicDamageParser());
     }
 
     parseEncounters(logFilePath: string): Promise<Encounters> {

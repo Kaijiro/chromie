@@ -11,6 +11,7 @@ import {SpellAuraRemovedParser} from "./matchers/implementations/SpellAuraRemove
 import {SpellDamageParser} from "./matchers/implementations/SpellDamageParser";
 import {SpellAuraAppliedParser} from "./matchers/implementations/SpellAuraAppliedParser";
 import {SpellCastSuccessParser} from "./matchers/implementations/SpellCastSuccessParser";
+import {SpellSummonParser} from "./matchers/implementations/SpellSummonParser";
 
 export default class LogFileParser {
 
@@ -24,6 +25,7 @@ export default class LogFileParser {
         this.parsers.push(new SpellDamageParser());
         this.parsers.push(new SpellAuraAppliedParser());
         this.parsers.push(new SpellCastSuccessParser());
+        this.parsers.push(new SpellSummonParser());
     }
 
     parseEncounters(logFilePath: string): Promise<Encounters> {

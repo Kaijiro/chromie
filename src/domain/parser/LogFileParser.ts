@@ -14,6 +14,7 @@ import {SpellCastSuccessParser} from "./matchers/implementations/SpellCastSucces
 import {SpellSummonParser} from "./matchers/implementations/SpellSummonParser";
 import {SpellMissedParser} from "./matchers/implementations/SpellMissedParser";
 import {SwingDamageParser} from "./matchers/implementations/SwingDamageParser";
+import {SpellAbsorbedParser} from "./matchers/implementations/SpellAbsorbedParser";
 
 export default class LogFileParser {
 
@@ -30,6 +31,7 @@ export default class LogFileParser {
         this.parsers.push(new SpellSummonParser());
         this.parsers.push(new SpellMissedParser());
         this.parsers.push(new SwingDamageParser());
+        this.parsers.push(new SpellAbsorbedParser());
     }
 
     parseEncounters(logFilePath: string): Promise<Encounters> {

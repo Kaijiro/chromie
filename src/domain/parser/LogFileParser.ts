@@ -24,6 +24,8 @@ import {RangeDamageParser} from "./matchers/implementations/RangeDamageParser";
 import {SpellPeriodicHealParser} from "./matchers/implementations/SpellPeriodicHealParser";
 import {SpellAuraRefreshParser} from "./matchers/implementations/SpellAuraRefreshParser";
 import {SpellPeriodicEnergizeParser} from "./matchers/implementations/SpellPeriodicEnergizeParser";
+import {SpellAuraBrokenSpellEvent} from "./events/implementations/SpellAuraBrokenSpellEvent";
+import {SpellAuraBrokenSpellParser} from "./matchers/implementations/SpellAuraBrokenSpellParser";
 
 export default class LogFileParser {
 
@@ -50,6 +52,7 @@ export default class LogFileParser {
         this.parsers.push(new SpellPeriodicHealParser());
         this.parsers.push(new SpellAuraRefreshParser());
         this.parsers.push(new SpellPeriodicEnergizeParser());
+        this.parsers.push(new SpellAuraBrokenSpellParser());
     }
 
     parseEncounters(logFilePath: string): Promise<Encounters> {

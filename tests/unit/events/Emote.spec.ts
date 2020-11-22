@@ -11,7 +11,7 @@ describe("Emote", () => {
 
         const event = parser.parse(EVENT_LINE);
 
-        expect(event).not.toBeNull();
+        expect(event).not.toBeFalsy();
     });
 
     it("should not do anything when applied on an Encounter", () => {

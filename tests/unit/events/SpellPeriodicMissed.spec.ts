@@ -8,6 +8,6 @@ describe("SpellPeriodicMissed", () => {
 
         const event = parser.parse(EVENT_LINE);
 
-        expect(event).not.toBeNull();
+        expect(event).not.toBeFalsy();
     });
 });

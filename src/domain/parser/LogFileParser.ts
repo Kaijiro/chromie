@@ -30,6 +30,7 @@ import {SpellPeriodicMissedParser} from "./matchers/implementations/SpellPeriodi
 import {UnitDiedEvent} from "./events/implementations/UnitDiedEvent";
 import {UnitDiedParser} from "./matchers/implementations/UnitDiedParser";
 import {EmoteParser} from "./matchers/implementations/EmoteParser";
+import {SpellCastFailedParser} from "./matchers/implementations/SpellCastFailedParser";
 
 export default class LogFileParser {
 
@@ -60,6 +61,7 @@ export default class LogFileParser {
         this.parsers.push(new SpellPeriodicMissedParser());
         this.parsers.push(new UnitDiedParser());
         this.parsers.push(new EmoteParser());
+        this.parsers.push(new SpellCastFailedParser());
     }
 
     parseEncounters(logFilePath: string): Promise<Encounters> {

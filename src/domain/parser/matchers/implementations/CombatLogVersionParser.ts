@@ -1,5 +1,5 @@
-import {LineParser} from "../LineParser";
-import {EncounterEvent} from "../../events/EncounterEvent";
+import LineParser from "../LineParser";
+import EncounterEvent from "../../events/EncounterEvent";
 import CombatLogVersionEvent from "../../events/implementations/CombatLogVersionEvent";
 
 export default class CombatLogVersionParser implements LineParser {

@@ -1,4 +1,4 @@
-import {Encounters} from "../../../src/domain/encounters/Encounters";
+import Encounters from "../../../src/domain/encounters/Encounters";
 import Encounter from "../../../src/domain/encounters/Encounter";
 
 describe("Encounters", () => {

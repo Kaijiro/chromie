@@ -1,8 +1,8 @@
-import {LineParser} from "../LineParser";
-import {EncounterEvent} from "../../events/EncounterEvent";
-import {SpellPeriodicEnergizeEvent} from "../../events/implementations/SpellPeriodicEnergizeEvent";
+import LineParser from "../LineParser";
+import EncounterEvent from "../../events/EncounterEvent";
+import SpellPeriodicEnergizeEvent from "../../events/implementations/SpellPeriodicEnergizeEvent";
 
-export class SpellPeriodicEnergizeParser implements LineParser {
+export default class SpellPeriodicEnergizeParser implements LineParser {
     parse(line: string): EncounterEvent | undefined {
         const eventInfoRegex = new RegExp(`SPELL_PERIODIC_ENERGIZE`);
         const result = eventInfoRegex.exec(line);

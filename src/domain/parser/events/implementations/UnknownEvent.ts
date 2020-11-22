@@ -1,7 +1,7 @@
-import {EncounterEvent} from "../EncounterEvent";
-import {Encounters} from "../../../encounters/Encounters";
+import EncounterEvent from "../EncounterEvent";
+import Encounters from "../../../encounters/Encounters";
 
-export class UnknownEvent implements EncounterEvent {
+export default class UnknownEvent implements EncounterEvent {
     constructor(private eventLine: string) {
     }
 

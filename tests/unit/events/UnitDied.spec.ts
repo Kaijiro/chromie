@@ -1,7 +1,7 @@
-import {UnitDiedParser} from "../../../src/domain/parser/matchers/implementations/UnitDiedParser";
-import {Encounters} from "../../../src/domain/encounters/Encounters";
+import UnitDiedParser from "../../../src/domain/parser/matchers/implementations/UnitDiedParser";
+import Encounters from "../../../src/domain/encounters/Encounters";
 import Encounter from "../../../src/domain/encounters/Encounter";
-import {UnitDiedEvent} from "../../../src/domain/parser/events/implementations/UnitDiedEvent";
+import UnitDiedEvent from "../../../src/domain/parser/events/implementations/UnitDiedEvent";
 
 describe("UnitDied", () => {
     const EVENT_LINE = "8/12 21:18:53.643  UNIT_DIED,0000000000000000,nil,0x80000000,0x80000000,Creature-0-3770-2164-22359-148432-000051BB94,\"Totem de fureur de Tonneraan\",0x2114,0x0,0";

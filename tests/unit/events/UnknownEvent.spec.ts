@@ -1,5 +1,5 @@
-import {Encounters} from "../../../src/domain/encounters/Encounters";
-import {UnknownEvent} from "../../../src/domain/parser/events/implementations/UnknownEvent";
+import Encounters from "../../../src/domain/encounters/Encounters";
+import UnknownEvent from "../../../src/domain/parser/events/implementations/UnknownEvent";
 import Encounter from "../../../src/domain/encounters/Encounter";
 
 jest.mock("../../../src/domain/encounters/Encounter");

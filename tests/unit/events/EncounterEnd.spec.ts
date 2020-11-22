@@ -1,7 +1,7 @@
-import {EncounterEndParser} from "../../../src/domain/parser/matchers/implementations/EncounterEndParser";
-import {Encounters} from "../../../src/domain/encounters/Encounters";
+import EncounterEndParser from "../../../src/domain/parser/matchers/implementations/EncounterEndParser";
+import Encounters from "../../../src/domain/encounters/Encounters";
 import Encounter from "../../../src/domain/encounters/Encounter";
-import {EncounterEndEvent} from "../../../src/domain/parser/events/implementations/EncounterEndEvent";
+import EncounterEndEvent from "../../../src/domain/parser/events/implementations/EncounterEndEvent";
 
 describe("EncounterEnd", () => {
     const EVENT_LINE = "8/12 21:21:53.467  ENCOUNTER_END,2311,\"Cour de la reine\",15,13,0";

@@ -1,8 +1,8 @@
-import {LineParser} from "../LineParser";
-import {EncounterEvent} from "../../events/EncounterEvent";
-import {UnitDiedEvent} from "../../events/implementations/UnitDiedEvent";
+import LineParser from "../LineParser";
+import EncounterEvent from "../../events/EncounterEvent";
+import UnitDiedEvent from "../../events/implementations/UnitDiedEvent";
 
-export class UnitDiedParser implements LineParser {
+export default class UnitDiedParser implements LineParser {
     parse(line: string): EncounterEvent | undefined {
         const eventInfoRegex = new RegExp(`UNIT_DIED`);
         const result = eventInfoRegex.exec(line);

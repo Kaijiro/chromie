@@ -1,6 +1,6 @@
 import CombatLogVersionParser from "../../../src/domain/parser/matchers/implementations/CombatLogVersionParser";
 import CombatLogVersionEvent from "../../../src/domain/parser/events/implementations/CombatLogVersionEvent";
-import {Encounters} from "../../../src/domain/encounters/Encounters";
+import Encounters from "../../../src/domain/encounters/Encounters";
 import Encounter from "../../../src/domain/encounters/Encounter";
 
 describe("CombatLogStarted", () => {

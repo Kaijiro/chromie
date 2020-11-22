@@ -1,8 +1,8 @@
-import {LineParser} from "../LineParser";
-import {EncounterEvent} from "../../events/EncounterEvent";
-import {EmoteEvent} from "../../events/implementations/EmoteEvent";
+import LineParser from "../LineParser";
+import EncounterEvent from "../../events/EncounterEvent";
+import EmoteEvent from "../../events/implementations/EmoteEvent";
 
-export class EmoteParser implements LineParser {
+export default class EmoteParser implements LineParser {
     parse(line: string): EncounterEvent | undefined {
         const eventInfoRegex = new RegExp(`EMOTE`);
         const result = eventInfoRegex.exec(line);

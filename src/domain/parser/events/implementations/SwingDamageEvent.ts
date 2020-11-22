@@ -1,7 +1,7 @@
-import {EncounterEvent} from "../EncounterEvent";
-import {Encounters} from "../../../encounters/Encounters";
+import EncounterEvent from "../EncounterEvent";
+import Encounters from "../../../encounters/Encounters";
 
-export class SwingDamageEvent implements EncounterEvent {
+export default class SwingDamageEvent implements EncounterEvent {
     applyOn(encounters: Encounters): void {
     }
 }

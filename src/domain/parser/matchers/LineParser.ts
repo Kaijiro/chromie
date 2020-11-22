@@ -1,5 +1,5 @@
-import {EncounterEvent} from "../events/EncounterEvent";
+import EncounterEvent from "../events/EncounterEvent";
 
-export interface LineParser {
+export default interface LineParser {
     parse(line: string): EncounterEvent | undefined
 }

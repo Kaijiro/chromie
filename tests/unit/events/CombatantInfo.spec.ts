@@ -1,8 +1,8 @@
-import {Encounters} from "../../../src/domain/encounters/Encounters";
-import {CombatantInfoEvent} from "../../../src/domain/parser/events/implementations/CombatantInfoEvent";
+import Encounters from "../../../src/domain/encounters/Encounters";
+import CombatantInfoEvent from "../../../src/domain/parser/events/implementations/CombatantInfoEvent";
 import Encounter from "../../../src/domain/encounters/Encounter";
-import {CombatantInfoParser} from "../../../src/domain/parser/matchers/implementations/CombatantInfoParser";
-import {EncounterEvent} from "../../../src/domain/parser/events/EncounterEvent";
+import CombatantInfoParser from "../../../src/domain/parser/matchers/implementations/CombatantInfoParser";
+import EncounterEvent from "../../../src/domain/parser/events/EncounterEvent";
 
 jest.mock("../../../src/domain/encounters/Encounter");
 

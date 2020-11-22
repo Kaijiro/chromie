@@ -1,6 +1,6 @@
 import Encounter from "./Encounter";
 
-export class Encounters {
+export default class Encounters {
 
     private readonly encounters: Encounter[];
 

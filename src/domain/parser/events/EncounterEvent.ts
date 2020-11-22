@@ -1,5 +1,5 @@
 import {Encounters} from "../../encounters/Encounters";
 
-export interface EncounterEvent {
+export default interface EncounterEvent {
     applyOn(encounters: Encounters): void
 }

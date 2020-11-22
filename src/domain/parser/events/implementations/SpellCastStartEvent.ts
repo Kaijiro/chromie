@@ -1,7 +1,7 @@
-import {EncounterEvent} from "../EncounterEvent";
-import {Encounters} from "../../../encounters/Encounters";
+import EncounterEvent from "../EncounterEvent";
+import Encounters from "../../../encounters/Encounters";
 
-export class SpellCastStartEvent implements EncounterEvent {
+export default class SpellCastStartEvent implements EncounterEvent {
     applyOn(encounters: Encounters): void {
     }
 }

@@ -1,5 +1,5 @@
 import LogFileParser from "../../../src/domain/parser/LogFileParser";
-import {Encounters} from "../../../src/domain/encounters/Encounters";
+import Encounters from "../../../src/domain/encounters/Encounters";
 import {binding, given, then, when} from "cucumber-tsflow";
 
 const expect = require("expect");

@@ -1,7 +1,7 @@
-import {SpellCastFailedParser} from "../../../src/domain/parser/matchers/implementations/SpellCastFailedParser";
-import {Encounters} from "../../../src/domain/encounters/Encounters";
+import SpellCastFailedParser from "../../../src/domain/parser/matchers/implementations/SpellCastFailedParser";
+import Encounters from "../../../src/domain/encounters/Encounters";
 import Encounter from "../../../src/domain/encounters/Encounter";
-import {SpellCastFailedEvent} from "../../../src/domain/parser/events/implementations/SpellCastFailedEvent";
+import SpellCastFailedEvent from "../../../src/domain/parser/events/implementations/SpellCastFailedEvent";
 
 describe("SpellFailed", () => {
     const EVENT_LINE = "8/12 21:19:02.639  SPELL_CAST_FAILED,Player-1390-09EFFE21,\"Pouettiro-Hyjal\",0x511,0x0,0000000000000000,nil,0x80000000,0x80000000,191837,\"Réceptacle d’essence\",0x8,\"Récupération incomplète\"";

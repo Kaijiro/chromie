@@ -1,8 +1,8 @@
-import {LineParser} from "../LineParser";
-import {EncounterEvent} from "../../events/EncounterEvent";
-import {SpellAbsorbedEvent} from "../../events/implementations/SpellAbsorbedEvent";
+import LineParser from "../LineParser";
+import EncounterEvent from "../../events/EncounterEvent";
+import SpellAbsorbedEvent from "../../events/implementations/SpellAbsorbedEvent";
 
-export class SpellAbsorbedParser implements LineParser {
+export default class SpellAbsorbedParser implements LineParser {
     parse(line: string): EncounterEvent | undefined {
         const eventInfoRegex = new RegExp(`SPELL_ABSORBED`);
         const result = eventInfoRegex.exec(line);

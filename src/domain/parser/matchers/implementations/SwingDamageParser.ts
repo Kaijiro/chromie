@@ -1,8 +1,8 @@
-import {LineParser} from "../LineParser";
-import {EncounterEvent} from "../../events/EncounterEvent";
-import {SwingDamageEvent} from "../../events/implementations/SwingDamageEvent";
+import LineParser from "../LineParser";
+import EncounterEvent from "../../events/EncounterEvent";
+import SwingDamageEvent from "../../events/implementations/SwingDamageEvent";
 
-export class SwingDamageParser implements LineParser {
+export default class SwingDamageParser implements LineParser {
     parse(line: string): EncounterEvent | undefined {
         const eventInfoRegex = new RegExp(`SWING_DAMAGE`);
         const result = eventInfoRegex.exec(line);

@@ -1,7 +1,7 @@
-import {Encounters} from "../../../src/domain/encounters/Encounters";
-import {EncounterStartEvent} from "../../../src/domain/parser/events/implementations/EncounterStartEvent";
-import {EncounterStartParser} from "../../../src/domain/parser/matchers/implementations/EncounterStartParser";
-import {EncounterEvent} from "../../../src/domain/parser/events/EncounterEvent";
+import Encounters from "../../../src/domain/encounters/Encounters";
+import EncounterStartEvent from "../../../src/domain/parser/events/implementations/EncounterStartEvent";
+import EncounterStartParser from "../../../src/domain/parser/matchers/implementations/EncounterStartParser";
+import EncounterEvent from "../../../src/domain/parser/events/EncounterEvent";
 import Encounter from "../../../src/domain/encounters/Encounter";
 
 jest.mock("../../../src/domain/encounters/Encounters");

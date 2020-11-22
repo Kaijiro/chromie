@@ -29,6 +29,7 @@ import {SpellAuraBrokenSpellParser} from "./matchers/implementations/SpellAuraBr
 import {SpellPeriodicMissedParser} from "./matchers/implementations/SpellPeriodicMissedParser";
 import {UnitDiedEvent} from "./events/implementations/UnitDiedEvent";
 import {UnitDiedParser} from "./matchers/implementations/UnitDiedParser";
+import {EmoteParser} from "./matchers/implementations/EmoteParser";
 
 export default class LogFileParser {
 
@@ -58,6 +59,7 @@ export default class LogFileParser {
         this.parsers.push(new SpellAuraBrokenSpellParser());
         this.parsers.push(new SpellPeriodicMissedParser());
         this.parsers.push(new UnitDiedParser());
+        this.parsers.push(new EmoteParser());
     }
 
     parseEncounters(logFilePath: string): Promise<Encounters> {

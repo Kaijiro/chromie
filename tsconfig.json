@@ -6,7 +6,8 @@
     "moduleResolution": "Node"
   },
   "include": [
-    "src/**/*"
+    "src/**/*",
+    "tests/unit/**/*"
   ],
   "exclude": [
     "node_modules"

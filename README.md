@@ -13,24 +13,34 @@ This tools does not intend to replace WarcraftLogs at all, they are 2 different 
 - Make Chromie as """efficient""" as before the code project big refactor
 
 ## Project setup
-```
+```shell script
 yarn install
+```
+
+You need to install [GIT LFS](https://git-lfs.github.com/) to retrieve the large log files that are (intentionally) 
+not committed here. 
+
+You can download the log file with :
+```shell script
+git lfs pull
 ```
 
 ### Run the project 
 ```
-yarn electron:serve
+# TODO Again
 ```
 
 ### Run the tests
-```
-yarn test
-```
-(Add `:watch` to enter watch mode)
+```shell script
+yarn test:unit
+yarn test:unit:watch # To enter watch mode
 
-### Lints and fixes files
-```
-yarn lint
+# Run the integration tests
+git lfs pull # Refresh the logs file 
+yarn test:integration
+
+# Run both tests
+yarn test
 ```
 
 ## Resources

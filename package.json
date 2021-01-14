@@ -10,10 +10,11 @@
     "test:unit:watch": "jest --watch",
     "test:integration": "cucumber-js tests/integration/features/*.feature --require-module ts-node/register --require tests/integration/step-definitions/*.ts --format node_modules/cucumber-pretty",
     "start": "electron .",
-    "prestart": "tsc && cp -r src/resources dist/src/resources"
+    "prestart": "rm -rf dist && tsc && cp -r src/resources dist/src/resources"
   },
   "dependencies": {
-    "electron": "^11.2.0"
+    "electron": "^11.2.0",
+    "vue": "^2.6.12"
   },
   "devDependencies": {
     "@types/cucumber": "^6.0.1",

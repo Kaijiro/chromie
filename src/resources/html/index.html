@@ -10,6 +10,23 @@
     We are using node <script>document.write(process.versions.node)</script>,
     Chrome <script>document.write(process.versions.chrome)</script>,
     and Electron <script>document.write(process.versions.electron)</script>.
+    <br/>
+    POUET POUET !
 </p>
+<div id="app">
+    {{ message }}
+</div>
+<script src="../../../../node_modules/vue/dist/vue.js"></script>
+<script type="text/javascript">
+    const app = new Vue({
+        el: '#app',
+        data: {
+            message: 'This is it !'
+        }
+    });
+
+    // TODO Upgrade Vue to use v3
+    // TODO Try to package the whole thing
+</script>
 </body>
 </html>

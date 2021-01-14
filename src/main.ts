@@ -8,6 +8,7 @@ function createWindow(){
     });
 
     win.loadURL(`file://${__dirname}/resources/html/index.html`);
+    win.webContents.openDevTools();
 }
 
 app.whenReady().then(createWindow);

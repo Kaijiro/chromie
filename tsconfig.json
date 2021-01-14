@@ -1,10 +1,12 @@
 {
   "compilerOptions": {
     "target": "ES2019",
+    "module": "CommonJS",
+    "moduleResolution": "Node",
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
-    "moduleResolution": "Node",
-    "esModuleInterop": true
+    "esModuleInterop": true,
+    "outDir": "./dist"
   },
   "include": [
     "src/**/*",

@@ -2,13 +2,19 @@
   "name": "chromie",
   "version": "0.1.0",
   "private": true,
+  "description": "",
+  "main": "dist/src/main.js",
   "scripts": {
     "test": "yarn test:unit && yarn test:integration",
     "test:unit": "jest",
     "test:unit:watch": "jest --watch",
-    "test:integration": "cucumber-js tests/integration/features/*.feature --require-module ts-node/register --require tests/integration/step-definitions/*.ts --format node_modules/cucumber-pretty"
+    "test:integration": "cucumber-js tests/integration/features/*.feature --require-module ts-node/register --require tests/integration/step-definitions/*.ts --format node_modules/cucumber-pretty",
+    "start": "electron .",
+    "prestart": "tsc && cp -r src/resources dist/src/resources"
   },
-  "dependencies": {},
+  "dependencies": {
+    "electron": "^11.2.0"
+  },
   "devDependencies": {
     "@types/cucumber": "^6.0.1",
     "@types/jest": "^26.0.20",

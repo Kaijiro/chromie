@@ -16,16 +16,20 @@
 <div id="app">
     {{ message }}
 </div>
-<script src="../../../../node_modules/vue/dist/vue.js"></script>
+<script src="../../../../node_modules/vue/dist/vue.global.js"></script>
 <script type="text/javascript">
-    const app = new Vue({
-        el: '#app',
-        data: {
-            message: 'This is it !'
+    const Test = {
+        data() {
+            return {
+                message: "This is it, but with the v3 !"
+            }
         }
-    });
+    };
 
-    // TODO Upgrade Vue to use v3
+    Vue.createApp(Test).mount('#app');
+
+    // TODO Instead of copying the html file, use the Vue localhost server. More info on : https://github.com/anhulife/electron-vue-3/blob/master/main/index.js
+    // TODO Use Vue devtools extension
     // TODO Try to package the whole thing
 </script>
 </body>

@@ -3,28 +3,37 @@
   "version": "0.1.0",
   "private": true,
   "description": "",
-  "main": "dist/src/main.js",
   "scripts": {
     "test": "yarn test:unit && yarn test:integration",
     "test:unit": "jest",
     "test:unit:watch": "jest --watch",
     "test:integration": "cucumber-js tests/integration/features/*.feature --require-module ts-node/register --require tests/integration/step-definitions/*.ts --format node_modules/cucumber-pretty",
-    "start": "electron .",
-    "prestart": "rm -rf dist && tsc && cp -r src/resources dist/src/resources"
+    "start": "env DEV_MODE=1 electron .",
+    "prestart": "rm -rf dist && tsc && cp -r src/resources dist/src/resources",
+    "serve": "env DEV_MODE=1 node ./serve"
   },
   "dependencies": {
+    "chokidar": "^3.5.1",
     "electron": "^11.2.0",
-    "vue": "^3.0.5"
+    "lodash.debounce": "^4.0.8",
+    "vue": "^3.0.5",
+    "vue-class-component": "^8.0.0-0"
   },
   "devDependencies": {
     "@types/cucumber": "^6.0.1",
+    "@types/electron-devtools-installer": "^2.2.0",
     "@types/jest": "^26.0.20",
+    "@vue/cli-plugin-typescript": "~4.5.0",
+    "@vue/cli-service": "~4.5.0",
+    "@vue/compiler-sfc": "^3.0.0",
     "cucumber": "^6.0.5",
     "cucumber-pretty": "^6.0.0",
     "cucumber-tsflow": "^3.2.0",
+    "electron-debug": "^3.2.0",
+    "electron-devtools-installer": "^3.1.1",
     "jest": "^26.0.1",
     "ts-jest": "^26.4.4",
     "ts-node": "^8.10.1",
-    "typescript": "^3.4.3"
+    "typescript": "^3.9.7"
   }
 }

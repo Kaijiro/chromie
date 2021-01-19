@@ -8,7 +8,7 @@ import expect = require("expect");
 export class ChromieSteps {
     private logFilePath: string = "";
     private logFileParser: LogFileParser = new LogFileParser();
-    private resultPromise: Promise<Encounters> = null;
+    private resultPromise: Promise<Encounters>;
 
     @given(/^The log file "(.*\.txt)"$/)
     public givenALogFile(logFilePath: string) {

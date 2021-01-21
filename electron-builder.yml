@@ -1,0 +1,12 @@
+appId: fr.kaijiro.chromie
+productName: Chromie
+
+directories:
+  output: dist
+  app: ./
+
+files:
+  - dist/
+  - main/index.js
+  - node_modules/
+  - package.json

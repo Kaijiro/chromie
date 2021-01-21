@@ -3,7 +3,7 @@
 
 # Chromie
 
-Chromie is a tool made to inspect passed Raid fight and try to figure :
+Chromie is a tool made to inspect passed World of Warcraft raids fight and try to figure :
 - Why it didn't work
 - Planify your Raid CDs
 - Get some stats on your pulls
@@ -26,9 +26,12 @@ git lfs pull
 ```
 
 ### Run the project 
+```shell script
+yarn serve
 ```
-# TODO Again
-```
+
+This will start the Vue project in dev mode with hot reload and link the Electron app
+to the webapp.
 
 ### Run the tests
 ```shell script

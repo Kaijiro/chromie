@@ -1,20 +1,21 @@
 {
   "name": "chromie",
   "version": "0.1.0",
+  "author": "Kaijiro - Tristan L.",
   "private": true,
-  "description": "",
+  "description": "Chromie is a tool made to inspect passed World of Warcraft raids fight and provide analysis tools.",
+  "main": "./main/index.js",
   "scripts": {
+    "serve": "env DEV_MODE=1 node ./serve",
     "test": "yarn test:unit && yarn test:integration",
     "test:unit": "jest",
     "test:unit:watch": "jest --watch",
     "test:integration": "cucumber-js tests/integration/features/*.feature --require-module ts-node/register --require tests/integration/step-definitions/*.ts --format node_modules/cucumber-pretty",
-    "start": "env DEV_MODE=1 electron .",
-    "prestart": "rm -rf dist && tsc && cp -r src/resources dist/src/resources",
-    "serve": "env DEV_MODE=1 node ./serve"
+    "build": "vue-cli-service build",
+    "package": "electron-builder build"
   },
   "dependencies": {
     "chokidar": "^3.5.1",
-    "electron": "^11.2.0",
     "lodash.debounce": "^4.0.8",
     "vue": "^3.0.5",
     "vue-class-component": "^8.0.0-0"
@@ -29,6 +30,8 @@
     "cucumber": "^6.0.5",
     "cucumber-pretty": "^6.0.0",
     "cucumber-tsflow": "^3.2.0",
+    "electron": "^11.2.0",
+    "electron-builder": "^22.9.1",
     "electron-debug": "^3.2.0",
     "electron-devtools-installer": "^3.1.1",
     "jest": "^26.0.1",

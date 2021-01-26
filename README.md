@@ -46,5 +46,20 @@ yarn test:integration
 yarn test
 ```
 
+### Build & Prepare the release
+
+```shell script
+yarn build && yarn package
+```
+
 ## Resources
+
 [WoW Log Documentation](https://wow.gamepedia.com/COMBAT_LOG_EVENT)
+
+## Inspiration, tools and maybe features to come ?
+
+[Warcraft Logs](https://www.warcraftlogs.com/)
+
+[Wipefest](https://www.wipefest.gg/)
+
+[WoWAnalyzer](https://www.wowanalyzer.com/)

@@ -2,11 +2,11 @@ appId: fr.kaijiro.chromie
 productName: Chromie
 
 directories:
-  output: dist
+  output: package
   app: ./
 
 files:
-  - dist/
+  - dist/**/*
   - main/index.js
   - node_modules/
   - package.json

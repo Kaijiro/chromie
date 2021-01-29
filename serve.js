@@ -55,7 +55,7 @@ function restartElectron() {
 
     startElectron();
 
-    const watcher = chokidar.watch(path.resolve(__dirname, './src'), {
+    const watcher = chokidar.watch(path.resolve(__dirname, './main'), {
         ignoreInitial: true,
     });
     watcher.on('all', debounce(restartElectron, 500));

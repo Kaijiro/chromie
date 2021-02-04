@@ -27,6 +27,7 @@
     "@vue/cli-plugin-typescript": "~4.5.0",
     "@vue/cli-service": "~4.5.0",
     "@vue/compiler-sfc": "^3.0.0",
+    "@vue/test-utils": "^2.0.0-rc.0",
     "cucumber": "^6.0.5",
     "cucumber-pretty": "^6.0.0",
     "cucumber-tsflow": "^3.2.0",
@@ -37,6 +38,8 @@
     "jest": "^26.0.1",
     "ts-jest": "^26.4.4",
     "ts-node": "^8.10.1",
-    "typescript": "^3.9.7"
+    "typescript": "^3.9.7",
+    "vue-jest": "^5.0.0-alpha.7",
+    "vue-template-compiler": "^2.6.12"
   }
 }

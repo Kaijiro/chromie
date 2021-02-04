@@ -9,10 +9,11 @@ module.exports = {
   coverageDirectory: "coverage",
 
   // The test environment that will be used for testing
-  testEnvironment: "node",
+  testEnvironment: "jsdom",
 
   // A map from regular expressions to paths to transformers
   transform: {
-    "^.+\\.tsx?$": "ts-jest"
+    "^.+\\.tsx?$": "ts-jest",
+    "^.+\\.vue$": "vue-jest"
   }
 };

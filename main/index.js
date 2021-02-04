@@ -14,6 +14,7 @@ function loadRoute(window, route) {
     }
 
     window.loadURL(url);
+    window.maximize();
 }
 
 // Prevent window being garbage collected

@@ -36,6 +36,8 @@
     "electron-debug": "^3.2.0",
     "electron-devtools-installer": "^3.1.1",
     "jest": "^26.0.1",
+    "sass": "^1.32.6",
+    "sass-loader": "^7.3.1",
     "ts-jest": "^26.4.4",
     "ts-node": "^8.10.1",
     "typescript": "^3.9.7",

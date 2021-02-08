@@ -12,16 +12,22 @@ export default {
     }
   },
   methods: {
-    addFile(event){
-      const files = event.dataTransfer.files;
+    addFile(event: DragEvent){
+      const dataTransfer = event.dataTransfer;
 
+      if(dataTransfer === null){
+        console.error("dataTransfer is null but it shouldn't be :(");
+        return;
+      }
+
+      const files = dataTransfer.files;
       console.debug(files);
     }
   }
 };
 </script>
 
-<style scoped>
+<style scoped lang="scss">
   .container {
     background-color: burlywood;
   }

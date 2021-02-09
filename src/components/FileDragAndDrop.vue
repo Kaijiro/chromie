@@ -8,17 +8,22 @@
 import {defineComponent} from "vue";
 
 export default defineComponent({
+  name: 'file-drap-and-drop',
+  emits: {
+    encountersParsed: (data: string) => {
+      return data.length > 0
+    }
+  },
   data() {
     return {
       files: []
     }
   },
-  emits: ["encountersParsed"],
   methods: {
-    addFile(event: DragEvent){
+    addFile(event: DragEvent) {
       const dataTransfer = event.dataTransfer;
 
-      if(dataTransfer === null){
+      if (dataTransfer === null) {
         console.error("dataTransfer is null but it shouldn't be :(");
         return;
       }

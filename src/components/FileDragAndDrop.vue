@@ -5,12 +5,15 @@
 </template>
 
 <script lang="ts">
-export default {
+import {defineComponent} from "vue";
+
+export default defineComponent({
   data() {
     return {
       files: []
     }
   },
+  emits: ["encountersParsed"],
   methods: {
     addFile(event: DragEvent){
       const dataTransfer = event.dataTransfer;
@@ -22,9 +25,12 @@ export default {
 
       const files = dataTransfer.files;
       console.debug(files);
+
+      console.debug("Emitting event !");
+      this.$emit('encountersParsed', "thisIsWhereIShouldPutMyEncounters");
     }
   }
-};
+});
 </script>
 
 <style scoped lang="scss">

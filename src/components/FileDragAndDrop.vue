@@ -6,17 +6,20 @@
 
 <script lang="ts">
 import {defineComponent} from "vue";
+import LogFileParser from "../domain/parser/LogFileParser";
+import Encounters from "../domain/encounters/Encounters";
 
 export default defineComponent({
   name: 'file-drap-and-drop',
   emits: {
-    encountersParsed: (data: string) => {
-      return data.length > 0
+    encountersParsed: (encounters: Encounters) => {
+      return encounters['encounters'].length > 0;
     }
   },
   data() {
     return {
-      files: []
+      files: [],
+      parser: new LogFileParser()
     }
   },
   methods: {
@@ -29,17 +32,18 @@ export default defineComponent({
       }
 
       const files = dataTransfer.files;
-      console.debug(files);
 
-      console.debug("Emitting event !");
-      this.$emit('encountersParsed', "thisIsWhereIShouldPutMyEncounters");
+      if(files.length === 0){
+        console.error("The file list is empty :(");
+        return;
+      }
+
+      return this.parser.parseEncounters(files[0].name).then((encounters: Encounters) => {
+        this.$emit('encountersParsed', encounters);
+      }).catch(e => {
+        console.error(`Oh no ! ${e}`);
+      });
     }
   }
 });
 </script>
-
-<style scoped lang="scss">
-  .container {
-    background-color: burlywood;
-  }
-</style>

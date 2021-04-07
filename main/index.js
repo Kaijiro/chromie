@@ -1,4 +1,6 @@
+const path = require('path');
 const electron = require('electron');
+const ipc = electron.ipcMain;
 
 const {app} = electron;
 
@@ -21,8 +23,16 @@ function loadRoute(window, route) {
 let mainWindow;
 
 function createMainWindow() {
+    console.log(app.getAppPath());
+
     mainWindow = new electron.BrowserWindow({
         width: 1000,
+        webPreferences: {
+            nodeIntegration: false,
+            contextIsolation: true,
+            enableRemoteModule: false,
+            preload: path.resolve(app.getAppPath(), "preload.js")
+        }
     });
 
     mainWindow.on('closed', () => {
@@ -40,4 +50,8 @@ app.on('window-all-closed', () => {
 
 app.on('ready', () => {
     createMainWindow();
+});
+
+ipc.on('parseRequest', (event, args) => {
+    console.debug(event, args);
 });

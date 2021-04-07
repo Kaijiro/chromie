@@ -38,6 +38,9 @@ export default defineComponent({
         return;
       }
 
+      // @ts-ignore
+      window.chromie_ipc.send('parseRequest', files[0].name);
+
       return this.parser.parseEncounters(files[0].name).then((encounters: Encounters) => {
         this.$emit('encountersParsed', encounters);
       }).catch(e => {

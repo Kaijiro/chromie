@@ -15,5 +15,7 @@ module.exports = {
   transform: {
     "^.+\\.tsx?$": "ts-jest",
     "^.+\\.vue$": "vue-jest"
-  }
+  },
+
+  setupFilesAfterEnv: ["<rootDir>/tests/jest_setup.js"]
 };

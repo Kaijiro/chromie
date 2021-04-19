@@ -7,15 +7,9 @@
 <script lang="ts">
 import {defineComponent} from "vue";
 import LogFileParser from "../domain/parser/LogFileParser";
-import Encounters from "../domain/encounters/Encounters";
 
 export default defineComponent({
-  name: 'file-drap-and-drop',
-  emits: {
-    encountersParsed: (encounters: Encounters) => {
-      return encounters['encounters'].length > 0;
-    }
-  },
+  name: 'file-drag-and-drop',
   data() {
     return {
       files: [],
@@ -38,14 +32,7 @@ export default defineComponent({
         return;
       }
 
-      // @ts-ignore
-      window.chromie_ipc.send('parseRequest', files[0].name);
-
-      return this.parser.parseEncounters(files[0].name).then((encounters: Encounters) => {
-        this.$emit('encountersParsed', encounters);
-      }).catch(e => {
-        console.error(`Oh no ! ${e}`);
-      });
+      window.chromie_ipc.send('parseRequest', (files[0] as File).path);
     }
   }
 });

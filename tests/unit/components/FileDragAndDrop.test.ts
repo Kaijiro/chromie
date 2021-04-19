@@ -1,8 +1,8 @@
 import {shallowMount} from "@vue/test-utils";
 import FileDragAndDrop from "../../../src/components/FileDragAndDrop.vue";
-import LogFileParser from "../../../src/domain/parser/LogFileParser";
 import Encounters from "../../../src/domain/encounters/Encounters";
 import Encounter from "../../../src/domain/encounters/Encounter";
+import Mock = jest.Mock;
 
 jest.mock("../../../src/domain/parser/LogFileParser");
 
@@ -26,29 +26,16 @@ describe("FileDragAndDrop component", () => {
         expect(fileDroppedMock).toBeCalledTimes(1);
     });
 
-    it(`should call the LogFileParser to retrieve the encounters from the dropped file`, () => {
+    it(`should call the IPC channel to retrieve the encounters from the dropped file`, () => {
         const parsedEncounters = new Encounters();
         parsedEncounters.add(new Encounter("Test Encounter"));
-        const parserMock = jest.fn().mockResolvedValueOnce(parsedEncounters);
-        component.vm.$data.parser.parseEncounters = parserMock;
 
+        // TODO It is actually a will to treat ONLY the first dropped file. Later, treat all file dropped.
         component.find('.container').trigger('drop', {dataTransfer: {files: [{name: "filename", path: "/path/to/file"}]}});
 
-        expect(parserMock).toBeCalledTimes(1);
-        expect(parserMock.mock.calls[0][0]).toBe("/path/to/file");
-    });
-
-    it(`should emit an encountersParsed event when a log file has been parsed`, async () => {
-        const parsedEncounters = new Encounters();
-        parsedEncounters.add(new Encounter("Test Encounter"));
-        component.vm.$data.parser.parseEncounters = jest.fn().mockResolvedValueOnce(parsedEncounters);
-
-        component.find('.container').trigger('drop', {dataTransfer: {files: [{name: "", path: ""}]}});
-
-        await component.vm.$nextTick();
-
-        expect(component.emitted('encountersParsed')).toBeTruthy();
-        expect(component.emitted('encountersParsed').length).toBe(1);
-        expect(component.emitted('encountersParsed')[0]).toEqual([parsedEncounters]);
+        const IPCSendMock = window.chromie_ipc.send as Mock;
+        expect(IPCSendMock).toBeCalledTimes(1);
+        expect(IPCSendMock.mock.calls[0][0]).toBe("parseRequest");
+        expect(IPCSendMock.mock.calls[0][1]).toBe("/path/to/file");
     });
 });

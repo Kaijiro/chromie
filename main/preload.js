@@ -4,7 +4,7 @@ const ipcRenderer = electron.ipcRenderer;
 
 const validChannels = ['CHROMIE_IPC_CHANNEL'];
 
-console.log("Preloaded script is running !");
+console.debug("Preload script is enriching the window object !");
 
 contextBridge.exposeInMainWorld('chromie_ipc', {
     'send': (channel, data) => {

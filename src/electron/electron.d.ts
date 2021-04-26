@@ -3,5 +3,5 @@
 export {}; // Turn the file into a module
 
 declare global {
-    interface File { path: string; }
+    interface File { path: string; } // The File interface in Electron has a additional path field
 }

@@ -35,7 +35,7 @@ import EncounterEndParser from "./matchers/implementations/EncounterEndParser";
 
 export default class LogFileParser {
 
-    private parsers: LineParser[] = new Array<LineParser>();
+    private parsers: LineParser[] = [];
 
     constructor() {
         this.parsers.push(new EncounterStartParser());

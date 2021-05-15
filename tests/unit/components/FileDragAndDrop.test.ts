@@ -35,7 +35,7 @@ describe("FileDragAndDrop component", () => {
 
         const IPCSendMock = window.chromie_ipc.send as Mock;
         expect(IPCSendMock).toBeCalledTimes(1);
-        expect(IPCSendMock.mock.calls[0][0]).toBe("parseRequest");
+        expect(IPCSendMock.mock.calls[0][0]).toBe("CHROMIE_IPC_CHANNEL");
         expect(IPCSendMock.mock.calls[0][1]).toBe("/path/to/file");
     });
 });

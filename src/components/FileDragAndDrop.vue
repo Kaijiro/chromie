@@ -32,7 +32,7 @@ export default defineComponent({
         return;
       }
 
-      window.chromie_ipc.send('parseRequest', (files[0] as File).path);
+      window.chromie_ipc.send('CHROMIE_IPC_CHANNEL', (files[0] as File).path);
     }
   }
 });

@@ -1,5 +1,4 @@
 const electron = require('electron');
-
 const {app} = electron;
 
 const isDevMode = process.env.DEV_MODE === "1";
@@ -36,6 +35,8 @@ function createMainWindow() {
     });
 
     loadRoute(mainWindow, '');
+
+    require(`${app.getAppPath()}/../dist/listeners.js`);
 }
 
 app.on('window-all-closed', () => {

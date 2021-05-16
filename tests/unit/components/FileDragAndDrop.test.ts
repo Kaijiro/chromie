@@ -2,8 +2,6 @@ import {shallowMount} from "@vue/test-utils";
 import FileDragAndDrop from "../../../src/components/FileDragAndDrop.vue";
 import Mock = jest.Mock;
 
-jest.mock("../../../src/domain/parser/LogFileParser");
-
 describe("FileDragAndDrop component", () => {
     let component: any;
 

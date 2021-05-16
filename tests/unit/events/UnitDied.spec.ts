@@ -1,5 +1,4 @@
 import UnitDiedParser from "../../../src/domain/parser/matchers/implementations/UnitDiedParser";
-import Encounters from "../../../src/domain/encounters/Encounters";
 import Encounter from "../../../src/domain/encounters/Encounter";
 import UnitDiedEvent from "../../../src/domain/parser/events/implementations/UnitDiedEvent";
 
@@ -15,15 +14,15 @@ describe("UnitDied", () => {
     });
 
     it("should not do anything when applied on an Encounter", () => {
-        const encounters: Encounters = new Encounters();
-        encounters.add(new Encounter(""));
+        const encounters: Encounter[] = [];
+        encounters.push(new Encounter(""));
 
         const event = new UnitDiedEvent();
 
         event.applyOn(encounters);
 
-        const expectedEncounters: Encounters = new Encounters();
-        expectedEncounters.add(new Encounter(""));
+        const expectedEncounters: Encounter[] = [];
+        expectedEncounters.push(new Encounter(""));
         expect(encounters).toStrictEqual(expectedEncounters);
     });
 });

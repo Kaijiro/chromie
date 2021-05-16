@@ -1,4 +1,3 @@
-import Encounters from "../../../src/domain/encounters/Encounters";
 import UnknownEvent from "../../../src/domain/parser/events/implementations/UnknownEvent";
 import Encounter from "../../../src/domain/encounters/Encounter";
 
@@ -10,9 +9,9 @@ describe("UnknownEvent", () => {
     it("should add an unknown event to the encounter", () => {
         Encounter.prototype.addUnknownEvent = jest.fn().mockImplementation();
 
-        const encounters: Encounters = new Encounters();
+        const encounters: Encounter[] = [];
         const encounter = new Encounter("");
-        encounters.add(encounter);
+        encounters.push(encounter);
 
         const event: UnknownEvent = new UnknownEvent(EVENT_LINE);
         event.applyOn(encounters);

@@ -1,10 +1,7 @@
-import Encounters from "../../../src/domain/encounters/Encounters";
 import EncounterStartEvent from "../../../src/domain/parser/events/implementations/EncounterStartEvent";
 import EncounterStartParser from "../../../src/domain/parser/matchers/implementations/EncounterStartParser";
 import EncounterEvent from "../../../src/domain/parser/events/EncounterEvent";
 import Encounter from "../../../src/domain/encounters/Encounter";
-
-jest.mock("../../../src/domain/encounters/Encounters");
 
 describe("EncounterStartParser and EncounterStartEvent", () => {
 
@@ -15,20 +12,16 @@ describe("EncounterStartParser and EncounterStartEvent", () => {
     });
 
     it(`should add an Encounter to the encounter list`, () => {
-        Encounters.prototype.add = jest.fn().mockImplementation(() => {
-        });
-        const encounters: Encounters = new Encounters();
+        const encounters: Encounter[] = [];
         const event: EncounterStartEvent = new EncounterStartEvent("");
 
         event.applyOn(encounters);
 
-        expect(Encounters.prototype.add).toBeCalled();
+        expect(encounters).toHaveLength(1);
     });
 
     it(`should add an Encounter with the specified name to the encounter list`, () => {
-        Encounters.prototype.add = jest.fn().mockImplementation(() => {
-        });
-        const encounters: Encounters = new Encounters();
+        const encounters: Encounter[] = [];
         const parser: EncounterStartParser = new EncounterStartParser();
 
         const event: EncounterEvent | undefined = parser.parse(EVENT_LINE);
@@ -40,6 +33,6 @@ describe("EncounterStartParser and EncounterStartEvent", () => {
         const encounterStartEvent = (event as EncounterStartEvent);
         encounterStartEvent.applyOn(encounters);
 
-        expect(Encounters.prototype.add).toBeCalledWith(new Encounter("Uu’nat, héraut du Vide"));
+        expect(encounters[0]).toStrictEqual(new Encounter("Uu’nat, héraut du Vide"));
     });
 });

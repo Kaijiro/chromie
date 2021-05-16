@@ -1,5 +1,4 @@
 import SpellResurrectParser from "../../../src/domain/parser/matchers/implementations/SpellResurrectParser";
-import Encounters from "../../../src/domain/encounters/Encounters";
 import Encounter from "../../../src/domain/encounters/Encounter";
 import SpellResurrectEvent from "../../../src/domain/parser/events/implementations/SpellResurrectEvent";
 
@@ -15,15 +14,15 @@ describe("SpellResurrect", () => {
     });
 
     it("should not do anything when applied on an Encounter", () => {
-        const encounters: Encounters = new Encounters();
-        encounters.add(new Encounter(""));
+        const encounters: Encounter[] = [];
+        encounters.push(new Encounter(""));
 
         const event = new SpellResurrectEvent();
 
         event.applyOn(encounters);
 
-        const expectedEncounters: Encounters = new Encounters();
-        expectedEncounters.add(new Encounter(""));
+        const expectedEncounters: Encounter[] = [];
+        expectedEncounters.push(new Encounter(""));
         expect(encounters).toStrictEqual(expectedEncounters);
     });
 });

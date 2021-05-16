@@ -1,11 +1,11 @@
 import EncounterEvent from "../EncounterEvent";
-import Encounters from "../../../encounters/Encounters";
+import Encounter from "../../../encounters/Encounter";
 
 export default class CombatantInfoEvent implements EncounterEvent {
     constructor(private playerID: string) {
     }
 
-    applyOn(encounters: Encounters): void {
-        encounters.last().addFighter(this.playerID);
+    applyOn(encounters: Encounter[]): void {
+        encounters[encounters.length - 1].addFighter(this.playerID);
     }
 }

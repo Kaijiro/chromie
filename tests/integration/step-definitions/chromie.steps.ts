@@ -1,14 +1,13 @@
 import LogFileParser from "../../../src/domain/parser/LogFileParser";
-import Encounters from "../../../src/domain/encounters/Encounters";
 import {binding, given, then, when} from "cucumber-tsflow";
-
+import Encounter from "../../../src/domain/encounters/Encounter";
 import expect = require("expect");
 
 @binding()
 export class ChromieSteps {
     private logFilePath: string = "";
     private logFileParser: LogFileParser = new LogFileParser();
-    private resultPromise: Promise<Encounters>;
+    private resultPromise: Promise<Encounter[]>;
 
     @given(/^The log file "(.*\.txt)"$/)
     public givenALogFile(logFilePath: string) {
@@ -22,7 +21,7 @@ export class ChromieSteps {
 
     @then("The encounter should contain {int} fighters")
     public thenEncounterContainsPlayerCount(expectedPlayerCount: number) {
-        this.resultPromise.then(encounters => expect(encounters.last().countFighters()).toEqual(expectedPlayerCount));
+        this.resultPromise.then(encounters => expect(encounters[encounters.length - 1].countFighters()).toEqual(expectedPlayerCount));
     }
 
     @then(/^The player with ID (Player-\d{4}-[A-F0-9]{8}) should has used (\d*) spells and techniques$/)
@@ -34,6 +33,6 @@ export class ChromieSteps {
 
     @then("The encounter should contain no unknown event")
     public thenTheEncounterShouldNotContainAnyUnknownEvent() {
-        this.resultPromise.then(encounters => expect(encounters.last().countUnknownEvents()).toBe(0));
+        this.resultPromise.then(encounters => expect(encounters[encounters.length - 1].countUnknownEvents()).toBe(0));
     }
 }

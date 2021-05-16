@@ -1,11 +1,11 @@
 import EncounterEvent from "../EncounterEvent";
-import Encounters from "../../../encounters/Encounters";
+import Encounter from "../../../encounters/Encounter";
 
 export default class UnknownEvent implements EncounterEvent {
     constructor(private eventLine: string) {
     }
 
-    applyOn(encounters: Encounters): void {
-        encounters.last().addUnknownEvent(this.eventLine);
+    applyOn(encounters: Encounter[]): void {
+        encounters[encounters.length - 1].addUnknownEvent(this.eventLine);
     }
 }

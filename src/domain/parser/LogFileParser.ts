@@ -2,7 +2,6 @@ import * as readline from "readline";
 import * as fs from "fs";
 import LineParser from "./matchers/LineParser";
 import EncounterStartParser from "./matchers/implementations/EncounterStartParser";
-import Encounters from "../encounters/Encounters";
 import EncounterEvent from "./events/EncounterEvent";
 import CombatantInfoParser from "./matchers/implementations/CombatantInfoParser";
 import UnknownEvent from "./events/implementations/UnknownEvent";
@@ -32,6 +31,7 @@ import SpellCastFailedParser from "./matchers/implementations/SpellCastFailedPar
 import SpellAuraBrokenParser from "./matchers/implementations/SpellAuraBrokenParser";
 import SpellResurrectParser from "./matchers/implementations/SpellResurrectParser";
 import EncounterEndParser from "./matchers/implementations/EncounterEndParser";
+import Encounter from "../encounters/Encounter";
 
 export default class LogFileParser {
 
@@ -68,9 +68,9 @@ export default class LogFileParser {
         this.parsers.push(new EncounterEndParser());
     }
 
-    parseEncounters(logFilePath: string): Promise<Encounters> {
-        return new Promise<Encounters>((resolve, reject) => {
-            const encounters: Encounters = new Encounters();
+    parseEncounters(logFilePath: string): Promise<Encounter[]> {
+        return new Promise<Encounter[]>((resolve, reject) => {
+            const encounters: Encounter[] = [];
             const fileReader = readline.createInterface({
                 input: fs.createReadStream(logFilePath)
             });

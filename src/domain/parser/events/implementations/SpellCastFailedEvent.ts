@@ -1,8 +1,8 @@
 import EncounterEvent from "../EncounterEvent";
-import Encounters from "../../../encounters/Encounters";
+import Encounter from "../../../encounters/Encounter";
 
 export default class SpellCastFailedEvent implements EncounterEvent {
-    applyOn(encounters: Encounters): void {
+    applyOn(encounters: Encounter[]): void {
 
     }
 }

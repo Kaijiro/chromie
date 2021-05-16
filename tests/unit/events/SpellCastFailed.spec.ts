@@ -1,5 +1,4 @@
 import SpellCastFailedParser from "../../../src/domain/parser/matchers/implementations/SpellCastFailedParser";
-import Encounters from "../../../src/domain/encounters/Encounters";
 import Encounter from "../../../src/domain/encounters/Encounter";
 import SpellCastFailedEvent from "../../../src/domain/parser/events/implementations/SpellCastFailedEvent";
 
@@ -15,15 +14,15 @@ describe("SpellFailed", () => {
     });
 
     it("should do not anything when applied on an Encounter", () => {
-        const encounters: Encounters = new Encounters();
-        encounters.add(new Encounter(""));
+        const encounters: Encounter[] = [];
+        encounters.push(new Encounter(""));
 
         const event = new SpellCastFailedEvent();
 
         event.applyOn(encounters);
 
-        const expectedEncounters: Encounters = new Encounters();
-        expectedEncounters.add(new Encounter(""));
+        const expectedEncounters: Encounter[] = [];
+        expectedEncounters.push(new Encounter(""));
         expect(encounters).toStrictEqual(expectedEncounters);
     });
 });

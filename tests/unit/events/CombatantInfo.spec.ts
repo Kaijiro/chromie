@@ -1,4 +1,3 @@
-import Encounters from "../../../src/domain/encounters/Encounters";
 import CombatantInfoEvent from "../../../src/domain/parser/events/implementations/CombatantInfoEvent";
 import Encounter from "../../../src/domain/encounters/Encounter";
 import CombatantInfoParser from "../../../src/domain/parser/matchers/implementations/CombatantInfoParser";
@@ -17,10 +16,10 @@ describe("CombatantInfoParser and CombatantInfoEvent", () => {
     it(`should add a player to the encounter`, () => {
         Encounter.prototype.addFighter = jest.fn().mockImplementation(() => {
         });
-        const encounters: Encounters = new Encounters();
+        const encounters: Encounter[] = [];
         const event: CombatantInfoEvent = new CombatantInfoEvent('Player-1390-09EFFE21');
 
-        encounters.add(new Encounter(""));
+        encounters.push(new Encounter(""));
         event.applyOn(encounters);
 
         expect(Encounter.prototype.addFighter).toBeCalled();
@@ -30,8 +29,8 @@ describe("CombatantInfoParser and CombatantInfoEvent", () => {
         Encounter.prototype.addFighter = jest.fn().mockImplementation(() => {
         });
 
-        const encounters: Encounters = new Encounters();
-        encounters.add(new Encounter(""));
+        const encounters: Encounter[] = [];
+        encounters.push(new Encounter(""));
         const parser: CombatantInfoParser = new CombatantInfoParser();
 
         const event: EncounterEvent | undefined = parser.parse(EVENT_LINE);

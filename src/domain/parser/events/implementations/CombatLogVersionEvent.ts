@@ -1,8 +1,8 @@
 import EncounterEvent from "../EncounterEvent";
-import Encounters from "../../../encounters/Encounters";
+import Encounter from "../../../encounters/Encounter";
 
 export default class CombatLogVersionEvent implements EncounterEvent {
-    applyOn(encounters: Encounters): void {
+    applyOn(encounter: Encounter[]): void {
         return;
     }
 }

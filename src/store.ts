@@ -1,18 +1,17 @@
 import {createStore} from "vuex";
 import Encounter from "./domain/encounters/Encounter";
-import Encounters from "./domain/encounters/Encounters";
 
 export interface ChromieState {
-    encounters: Encounters
+    encounters: Encounter[]
 }
 
 const state = {
-    encounters: new Encounters()
+    encounters: []
 };
 
 export const mutations = {
-    addEncounter(state: ChromieState, encounter: Encounter){
-        state.encounters.add(encounter);
+    addEncounter(currentState: ChromieState, encounter: Encounter) {
+        currentState.encounters.push(encounter);
     }
 };
 

@@ -1,7 +1,5 @@
 import {shallowMount} from "@vue/test-utils";
 import FileDragAndDrop from "../../../src/components/FileDragAndDrop.vue";
-import Encounters from "../../../src/domain/encounters/Encounters";
-import Encounter from "../../../src/domain/encounters/Encounter";
 import Mock = jest.Mock;
 
 jest.mock("../../../src/domain/parser/LogFileParser");
@@ -27,9 +25,6 @@ describe("FileDragAndDrop component", () => {
     });
 
     it(`should call the IPC channel to retrieve the encounters from the dropped file`, () => {
-        const parsedEncounters = new Encounters();
-        parsedEncounters.add(new Encounter("Test Encounter"));
-
         // TODO It is actually a will to treat ONLY the first dropped file. Later, treat all file dropped.
         component.find('.container').trigger('drop', {dataTransfer: {files: [{name: "filename", path: "/path/to/file"}]}});
 

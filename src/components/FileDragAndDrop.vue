@@ -6,16 +6,9 @@
 
 <script lang="ts">
 import {defineComponent} from "vue";
-import LogFileParser from "../domain/parser/LogFileParser";
 
 export default defineComponent({
   name: 'file-drag-and-drop',
-  data() {
-    return {
-      files: [],
-      parser: new LogFileParser()
-    }
-  },
   methods: {
     addFile(event: DragEvent) {
       const dataTransfer = event.dataTransfer;

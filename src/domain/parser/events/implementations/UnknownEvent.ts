@@ -6,6 +6,10 @@ export default class UnknownEvent implements EncounterEvent {
     }
 
     applyOn(encounters: Encounter[]): void {
+        if (encounters.length === 0) {
+            return;
+        }
+
         encounters[encounters.length - 1].addUnknownEvent(this.eventLine);
     }
 }

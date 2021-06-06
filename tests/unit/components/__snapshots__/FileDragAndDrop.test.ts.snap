@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`FileDragAndDrop component should display the drag and drop prompt 1`] = `
+<div
+  data-v-app=""
+>
+  <div
+    class="container"
+  >
+    <h2>
+      Drag and drop a file here !
+    </h2>
+  </div>
+</div>
+`;

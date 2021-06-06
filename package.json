@@ -35,7 +35,7 @@
     "cucumber": "^6.0.5",
     "cucumber-pretty": "^6.0.0",
     "cucumber-tsflow": "^3.2.0",
-    "electron": "^11.2.0",
+    "electron": "^12.0.2",
     "electron-builder": "^22.9.1",
     "electron-debug": "^3.2.0",
     "electron-devtools-installer": "^3.1.1",

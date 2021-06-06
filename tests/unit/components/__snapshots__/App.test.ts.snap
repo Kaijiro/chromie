@@ -1,0 +1,19 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`App component should display the drag and drop component when no file has been dropped 1`] = `
+<div
+  data-v-app=""
+>
+  <file-drag-and-drop-stub />
+</div>
+`;
+
+exports[`App component should display the sidebar and the main area when encounters are available 1`] = `
+<div
+  data-v-app=""
+>
+  <div>
+    <sidebar-stub />
+  </div>
+</div>
+`;

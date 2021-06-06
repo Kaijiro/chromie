@@ -18,4 +18,14 @@ describe("UnknownEvent", () => {
 
         expect(Encounter.prototype.addUnknownEvent).toBeCalled();
     });
+
+    // TODO It does not count the trash mob encounters. Not sure about wanting to keep this.
+    it("should not affect the encounters if no encounter is currently started", () => {
+        const encounters: Encounter[] = [];
+        const event: UnknownEvent = new UnknownEvent(EVENT_LINE);
+
+        event.applyOn(encounters);
+
+        expect(encounters).toStrictEqual([]);
+    });
 });

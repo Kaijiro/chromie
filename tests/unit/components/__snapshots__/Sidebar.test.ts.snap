@@ -1,0 +1,21 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Sidebar component should display a list of all encounters 1`] = `
+<div
+  data-v-app=""
+>
+  <ul>
+    
+    <li>
+      Boss n°1
+    </li>
+    <li>
+      Boss n°2
+    </li>
+    <li>
+      Boss n°3
+    </li>
+    
+  </ul>
+</div>
+`;

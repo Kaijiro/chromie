@@ -30,6 +30,7 @@ describe('Encounter', () => {
         });
     });
 
+    // TODO WTF ?
     describe('::getName()', () => {
         it(`should return "Uu'nat" when the encounter is constructed with "Uu'nat"`, () => {
             let encounter: Encounter = new Encounter(`Uu'nat`);

@@ -20,6 +20,7 @@ export default defineComponent({
     encounters: 'encounters'
   }),
   setup() {
+    // TODO Dumb showcase on how to register the hook. Use it or delete it.
     onMounted(() => {
       console.log("App component mounted");
     });

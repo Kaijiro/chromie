@@ -6,13 +6,45 @@ exports[`Sidebar component should display a list of all encounters 1`] = `
 >
   <ul>
     
-    <li>
+    <li
+      class=""
+    >
       Boss n°1
     </li>
-    <li>
+    <li
+      class=""
+    >
       Boss n°2
     </li>
-    <li>
+    <li
+      class=""
+    >
+      Boss n°3
+    </li>
+    
+  </ul>
+</div>
+`;
+
+exports[`Sidebar component should highlight the selected encounter 1`] = `
+<div
+  data-v-app=""
+>
+  <ul>
+    
+    <li
+      class=""
+    >
+      Boss n°1
+    </li>
+    <li
+      class="selected"
+    >
+      Boss n°2
+    </li>
+    <li
+      class=""
+    >
       Boss n°3
     </li>
     

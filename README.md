@@ -5,11 +5,18 @@
 
 Chromie is a tool made to inspect passed World of Warcraft raids fight and try to figure :
 - Why it didn't work
-- Planify your Raid CDs
+- Plan your Raid CDs
 - Get some stats on your pulls
 
-This tools does not intend to replace WarcraftLogs at all, they are 2 different tools.
-## Objectives on short/mid term
+This tool does not intend to replace WarcraftLogs at all, they are 2 different tools.
+
+## Objectives
+
+### Short and very short term
+- Define a graphic identity and a structure for the app layout
+- Add a loader when Chromie is parsing a file
+
+### Mid term
 - Make Chromie as """efficient""" as before the code project big refactor
 
 ## Project setup
@@ -18,9 +25,10 @@ yarn install
 ```
 
 You need to install [GIT LFS](https://git-lfs.github.com/) to retrieve the large log files that are (intentionally) 
-not committed here. 
+not committed here. Those files are only used for testing purpose and use only necessary if you intend to run the test
+suites.
 
-You can download the log file with :
+You can download the log files with :
 ```shell script
 git lfs pull
 ```

@@ -1,14 +1,8 @@
 export default class Encounter {
-    private readonly name: string;
-    private fighters: Array<string> = [];
-    private unknownLines: Array<string> = [];
+    public readonly fighters: Array<string> = [];
+    public readonly unknownLines: Array<string> = [];
 
-    public constructor(name: string) {
-        this.name = name;
-    }
-
-    countFighters(): number {
-        return this.fighters.length;
+    public constructor(public readonly name: string) {
     }
 
     addFighter(fighter: string) {
@@ -17,9 +11,5 @@ export default class Encounter {
 
     addUnknownEvent(eventLine: string) {
         this.unknownLines.push(eventLine);
-    }
-
-    countUnknownEvents(): number {
-        return this.unknownLines.length;
     }
 }

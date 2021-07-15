@@ -20,7 +20,14 @@ export const mutations = {
     }
 };
 
+export const getters = {
+    selectedEncounter(state: ChromieState): Encounter {
+        return state.encounters[state.selectedEncounterIndex] ?? null;
+    }
+};
+
 export const store = createStore<ChromieState>({
     state: state,
-    mutations: mutations
+    mutations: mutations,
+    getters: getters
 });

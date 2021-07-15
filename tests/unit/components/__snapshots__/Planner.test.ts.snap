@@ -1,0 +1,34 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Planner component should display the list of players of the encounters 1`] = `
+<div
+  data-v-app=""
+>
+  
+   Here we go, let's go on planning.
+  <br />
+   Planning for Boss n°1
+  <br />
+   {
+  "name": "Boss n°1",
+  "fighters": [
+    "FighterXYZ"
+  ],
+  "unknownLines": []
+} 
+  <table>
+    <tr>
+      <td>
+        <ul>
+          
+          <li>
+            FighterXYZ
+          </li>
+          
+        </ul>
+      </td>
+    </tr>
+  </table>
+  
+</div>
+`;

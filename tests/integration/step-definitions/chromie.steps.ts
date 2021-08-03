@@ -2,6 +2,7 @@ import LogFileParser from "../../../src/domain/parser/LogFileParser";
 import {binding, given, then, when} from "cucumber-tsflow";
 import Encounter from "../../../src/domain/encounters/Encounter";
 import expect = require("expect");
+import {Fighter} from "../../../src/domain/encounters/Fighter";
 
 @binding()
 export class ChromieSteps {
@@ -20,26 +21,36 @@ export class ChromieSteps {
     }
 
     @then("The encounter should contain {int} fighters")
-    public thenEncounterContainsPlayerCount(expectedPlayerCount: number) {
-        this.resultPromise.then(encounters => expect(encounters[encounters.length - 1].fighters.length).toEqual(expectedPlayerCount));
+    public async thenEncounterContainsPlayerCount(expectedPlayerCount: number) {
+        await this.resultPromise.then(encounters => expect(encounters[encounters.length - 1].fighters.length).toEqual(expectedPlayerCount));
     }
 
     @then(/^The player with ID (Player-\d{4}-[A-F0-9]{8}) should has used (\d*) spells and techniques$/)
-    public thenPlayerWithIDShouldHasUsedSpellCount(playerId: string, spellCount: string) {
+    public async thenPlayerWithIDShouldHasUsedSpellCount(playerId: string, spellCount: string) {
         const spellCountNumber = parseInt(spellCount);
-        console.log(playerId, spellCountNumber);
-        console.debug("Ouh yeah");
 
-        this.resultPromise.then(encounters => {
+        await this.resultPromise.then(encounters => {
             const checkedEncounter = encounters[0];
 
-            const fighter = checkedEncounter.fighters.find(fighter => fighter.id === playerId);
-            expect(fighter.actions.length).toBe(spellCount);
+            const fighter: Fighter | undefined = checkedEncounter.fighters.find(fighter => fighter.id === playerId);
+
+            if (fighter === undefined) {
+                throw new Error(`Could not find fighter ${playerId} in the Fight`);
+            }
+
+            expect(fighter.actions.length).toBe(spellCountNumber);
         });
     }
 
-    @then("The encounter should contain no unknown event")
-    public thenTheEncounterShouldNotContainAnyUnknownEvent() {
-        this.resultPromise.then(encounters => expect(encounters[encounters.length - 1].unknownLines.length).toBe(0));
+    @then("The encounter should contain no unknown event", "", 60000)
+    public async thenTheEncounterShouldNotContainAnyUnknownEvent() {
+        await this.resultPromise
+            .then(encounters => {
+                const unknownLines = encounters[encounters.length - 1].unknownLines;
+
+                if(unknownLines.length !== 0){
+                    throw new Error(`Encounter does contain ${unknownLines.length} unknown events. Here are a few examples :\n${unknownLines.slice(0, 3).map(line => line + '\n')}`);
+                }
+            });
     }
 }

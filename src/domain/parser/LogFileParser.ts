@@ -32,6 +32,10 @@ import SpellAuraBrokenParser from "./matchers/implementations/SpellAuraBrokenPar
 import SpellResurrectParser from "./matchers/implementations/SpellResurrectParser";
 import EncounterEndParser from "./matchers/implementations/EncounterEndParser";
 import Encounter from "../encounters/Encounter";
+import SpellInterruptParser from "./matchers/implementations/SpellInterruptParser";
+import RangeMissedParser from "./matchers/implementations/RangeMissedParser";
+import SpellDispelParser from "./matchers/implementations/SpellDispelParser";
+import PartyKillParser from "./matchers/implementations/PartyKillParser";
 
 export default class LogFileParser {
 
@@ -66,6 +70,10 @@ export default class LogFileParser {
         this.parsers.push(new SpellAuraBrokenParser());
         this.parsers.push(new SpellResurrectParser());
         this.parsers.push(new EncounterEndParser());
+        this.parsers.push(new SpellInterruptParser());
+        this.parsers.push(new RangeMissedParser());
+        this.parsers.push(new SpellDispelParser());
+        this.parsers.push(new PartyKillParser());
     }
 
     parseEncounters(logFilePath: string): Promise<Encounter[]> {
